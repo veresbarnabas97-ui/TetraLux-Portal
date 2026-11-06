@@ -1,598 +1,485 @@
-```html
 <!DOCTYPE html>
-<html lang="hu" class="dark">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TetraLux (TLX) - Hivatalos Solana Portál</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        solana: {
-                            purple: '#9945FF',
-                            green: '#14F195',
-                            dark: '#0B0E14',
-                            card: '#161B26',
-                            border: '#272F40'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <!-- Chart.js -->
+    <title>TetraLux (TLX) Portal | Official Solana Token</title>
+    
+    <!-- Solana Web3.js & Chart.js -->
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
+        :root {
+            --bg-color: #0b0e14;
+            --card-bg: rgba(22, 27, 38, 0.7);
+            --border-color: rgba(0, 240, 255, 0.15);
+            --primary-cyan: #00f0ff;
+            --primary-purple: #7000ff;
+            --text-main: #f0f4f8;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0B0E14;
-            color: #F3F4F6;
-            overflow-x: hidden;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(112, 0, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.15) 0%, transparent 40%);
+            background-attachment: fixed;
+            padding-bottom: 50px;
         }
 
-        /* Glassmorphism utility */
-        .glass-panel {
-            background: rgba(22, 27, 38, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(153, 69, 255, 0.2);
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(11, 14, 20, 0.8);
         }
 
-        .glass-panel-glow {
-            background: rgba(22, 27, 38, 0.85);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(20, 241, 149, 0.3);
-            box-shadow: 0 0 25px rgba(20, 241, 149, 0.15);
-        }
-
-        /* Neon Text & Gradient Borders */
-        .text-gradient {
-            background: linear-gradient(135deg, #9945FF 0%, #14F195 100%);
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, var(--primary-cyan), var(--primary-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .btn-gradient {
-            background: linear-gradient(135deg, #9945FF 0%, #14F195 100%);
+        .btn-connect {
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-cyan));
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 240, 255, 0.2);
         }
 
-        .btn-gradient:hover {
+        .btn-connect:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 240, 255, 0.4);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(180deg, #ffffff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .mint-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 650px;
+            margin: 25px auto 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .mint-address {
+            font-family: monospace;
+            color: var(--primary-cyan);
+            font-size: 0.95rem;
+            word-break: break-all;
+        }
+
+        .btn-copy {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-copy:hover {
+            background: var(--primary-cyan);
+            color: #000;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-cyan);
+        }
+
+        /* Swap Module */
+        .swap-input-group {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .swap-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .swap-input-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .swap-input-row input {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            width: 60%;
+            outline: none;
+        }
+
+        .token-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .btn-swap {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(45deg, var(--primary-cyan), var(--primary-purple));
+            border: none;
+            border-radius: 16px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-swap:hover {
             opacity: 0.9;
-            box-shadow: 0 0 20px rgba(153, 69, 255, 0.6);
-            transform: translateY(-1px);
+            transform: scale(1.01);
         }
 
-        /* Pulse glow animation */
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 0.8; }
+        /* Airdrop Table */
+        .airdrop-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .glow-bg {
-            animation: pulseGlow 6s infinite ease-in-out;
+        .airdrop-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
+
+        .badge-winner {
+            background: rgba(0, 240, 255, 0.1);
+            color: var(--primary-cyan);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            border: 1px solid var(--primary-cyan);
+        }
+
+        .amount {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        /* Notification Toast */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: var(--primary-purple);
+            color: #fff;
+            text-align: center;
+            border-radius: 12px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1000;
+            right: 30px;
+            bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-solana-purple selection:text-white">
+<body>
 
-    <!-- Glowing Background Elements -->
-    <div class="fixed top-0 left-1/4 w-96 h-96 bg-solana-purple/20 rounded-full blur-3xl pointer-events-none glow-bg"></div>
-    <div class="fixed bottom-0 right-1/4 w-96 h-96 bg-solana-green/15 rounded-full blur-3xl pointer-events-none glow-bg" style="animation-delay: 3s;"></div>
-
-    <!-- Navigation Bar -->
-    <header class="sticky top-0 z-50 glass-panel border-b border-solana-border/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
-                <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-                    <div class="w-10 h-10 rounded-xl btn-gradient flex items-center justify-center font-black text-xl text-black shadow-lg">
-                        TLX
-                    </div>
-                    <div>
-                        <span class="text-2xl font-extrabold tracking-wider text-white">Tetra<span class="text-solana-green">Lux</span></span>
-                        <span class="block text-[10px] tracking-widest text-solana-purple font-bold uppercase">Solana Network</span>
-                    </div>
-                </div>
-
-                <!-- Navigation Links -->
-                <nav class="hidden md:flex space-x-8 font-medium text-sm text-gray-300">
-                    <a href="#swap" class="hover:text-solana-green transition">Swap</a>
-                    <a href="#airdrop" class="hover:text-solana-green transition">Airdrop Winners</a>
-                    <a href="#tokenomics" class="hover:text-solana-green transition">Tokenomika</a>
-                    <a href="#pool" class="hover:text-solana-green transition">Pool Infó</a>
-                </nav>
-
-                <!-- Wallet Connect Button -->
-                <div>
-                    <button id="connectWalletBtn" onclick="toggleWalletConnect()" class="btn-gradient text-black font-bold py-2.5 px-6 rounded-xl flex items-center space-x-2 text-sm shadow-md">
-                        <i class="fa-solid fa-wallet"></i>
-                        <span id="walletBtnText">Tárca Csatlakoztatása</span>
-                    </button>
-                </div>
-            </div>
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-gem"></i>
+            <span>TetraLux (TLX)</span>
         </div>
+        <button class="btn-connect" id="connectWalletBtn" onclick="connectWallet()">
+            <i class="fa-solid fa-wallet"></i> Tárca Csatlakoztatása
+        </button>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>A TetraLux Hivatalosan Elindult!</h1>
+            <p>On-Chain Solana Token & Decentralizált Ökoszisztéma Portal.</p>
+            
+            <div class="mint-box">
+                <div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); text-align: left;">TOKEN MINT ADDRESS</div>
+                    <div class="mint-address" id="mintAddress">5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3</div>
+                </div>
+                <button class="btn-copy" onclick="copyMint()"><i class="fa-regular fa-copy"></i> Másolás</button>
+            </div>
+        </div>
 
-        <!-- Banner & Token Details Header -->
-        <section class="glass-panel-glow rounded-3xl p-6 md:p-10 relative overflow-hidden">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="grid-2">
+            <!-- Swap Card -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fa-solid fa-right-left"></i> On-Chain Instant Swap
+                </div>
                 
-                <div class="lg:col-span-7 space-y-6">
-                    <div class="inline-flex items-center space-x-2 bg-solana-purple/20 border border-solana-purple/40 px-3 py-1 rounded-full text-xs font-semibold text-solana-green">
-                        <span class="w-2 h-2 rounded-full bg-solana-green animate-ping"></span>
-                        <span>Hivatalosan elindult a Solana Blokkláncon!</span>
+                <div class="swap-input-group">
+                    <div class="swap-label">
+                        <span>Fizetés</span>
+                        <span id="solBalance">Egyenleg: 0 SOL</span>
                     </div>
-
-                    <h1 class="text-4xl sm:text-5xl font-black tracking-tight leading-tight">
-                        Fedezd fel a <span class="text-gradient">TetraLux (TLX)</span> Ökoszisztémát
-                    </h1>
-
-                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed">
-                        A TetraLux a jövő decentralizált Solana tokenje, mely villámgyors tranzakciókat és kiemelkedő likviditást biztosít. Csatlakozz az új generációs Web3 közösséghez!
-                    </p>
-
-                    <!-- Mint Address Box -->
-                    <div class="bg-black/40 border border-solana-border p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                        <div class="overflow-hidden w-full">
-                            <span class="text-xs text-gray-400 block font-semibold uppercase tracking-wider mb-1">Token Mint Address (Solana):</span>
-                            <span id="mintAddress" class="font-mono text-xs sm:text-sm text-solana-green font-bold truncate block">
-                                5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3
-                            </span>
-                        </div>
-                        <button onclick="copyMintAddress()" class="w-full sm:w-auto shrink-0 bg-solana-purple/30 hover:bg-solana-purple/50 border border-solana-purple/50 text-white font-semibold py-2 px-4 rounded-xl text-xs flex items-center justify-center space-x-2 transition">
-                            <i class="fa-regular fa-copy"></i>
-                            <span id="copyBtnText">Másolás</span>
-                        </button>
+                    <div class="swap-input-row">
+                        <input type="number" id="inputSol" placeholder="0.0" oninput="calculateSwap()">
+                        <div class="token-badge"><i class="fa-solid fa-coins" style="color:#14F195"></i> SOL</div>
                     </div>
                 </div>
 
-                <!-- Initial Pool Info Card -->
-                <div class="lg:col-span-5">
-                    <div class="bg-solana-card/90 border border-solana-purple/30 rounded-2xl p-6 space-y-4 relative overflow-hidden">
-                        <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-solana-green/10 rounded-full blur-xl pointer-events-none"></div>
+                <div style="text-align: center; margin: -5px 0 10px; color: var(--primary-cyan);">
+                    <i class="fa-solid fa-arrow-down"></i>
+                </div>
 
-                        <div class="flex items-center justify-between">
-                            <h3 class="font-bold text-lg text-white flex items-center gap-2">
-                                <i class="fa-solid fa-water-pool text-solana-green"></i> Initial Liquidity Pool
-                            </h3>
-                            <span class="text-xs bg-solana-green/20 text-solana-green font-bold px-2.5 py-1 rounded-md border border-solana-green/30">Raydium Active</span>
-                        </div>
-
-                        <div class="border-t border-solana-border pt-4 space-y-3">
-                            <div class="flex justify-between items-center text-sm">
-                                <span class="text-gray-400">Párba állított Liquidity:</span>
-                                <span class="font-bold text-white">0.93 SOL / 749,999 TLX</span>
-                            </div>
-                            <div class="flex justify-between items-center text-sm">
-                                <span class="text-gray-400">Kezdő TLX Árfolyam:</span>
-                                <span class="font-bold text-solana-green">~0.00000124 SOL</span>
-                            </div>
-                            <div class="flex justify-between items-center text-sm">
-                                <span class="text-gray-400">Hálózati státusz:</span>
-                                <span class="font-bold text-emerald-400 flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Mainnet-Beta
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="mt-4 pt-4 border-t border-solana-border">
-                            <p class="text-xs text-gray-400 leading-relaxed">
-                                <i class="fa-solid fa-circle-info text-solana-purple"></i> 
-                                <strong>Értékelés:</strong> A 0.93 SOL / 749.999 TLX arány kiváló és stabil induló alapot teremt a kezdeti kereskedési volumenhez és az organikus növekedéshez!
-                            </p>
-                        </div>
+                <div class="swap-input-group">
+                    <div class="swap-label">
+                        <span>Kapott összeg (Becsült)</span>
+                        <span id="tlxBalance">Egyenleg: 0 TLX</span>
+                    </div>
+                    <div class="swap-input-row">
+                        <input type="number" id="outputTlx" placeholder="0.0" readonly>
+                        <div class="token-badge"><i class="fa-solid fa-gem" style="color:var(--primary-cyan)"></i> TLX</div>
                     </div>
                 </div>
 
-            </div>
-        </section>
-
-        <!-- Swap & Interactive Order Form Section -->
-        <section id="swap" class="scroll-mt-28">
-            <div class="max-w-xl mx-auto">
-                <div class="glass-panel rounded-3xl p-6 sm:p-8 relative">
-                    <div class="flex items-center justify-between mb-6">
-                        <div>
-                            <h2 class="text-2xl font-black text-white">TLX Instant Swap</h2>
-                            <p class="text-xs text-gray-400">Válts SOL-t TetraLux (TLX) tokenre valós időben</p>
-                        </div>
-                        <button onclick="refreshSwapRate()" class="text-gray-400 hover:text-solana-green transition">
-                            <i class="fa-solid fa-rotate-right text-lg"></i>
-                        </button>
-                    </div>
-
-                    <!-- Swap Inputs -->
-                    <div class="space-y-4">
-                        <!-- From (SOL) -->
-                        <div class="bg-black/50 border border-solana-border p-4 rounded-2xl space-y-2">
-                            <div class="flex justify-between text-xs text-gray-400 font-semibold">
-                                <span>Fizetsz (Eladás)</span>
-                                <span>Egyenleg: <span id="userSolBalance">0.00</span> SOL</span>
-                            </div>
-                            <div class="flex items-center justify-between gap-4">
-                                <input type="number" id="solInput" placeholder="0.0" value="0.1" oninput="calculateSwap()" class="bg-transparent text-2xl font-bold text-white focus:outline-none w-full">
-                                <div class="flex items-center space-x-2 bg-solana-card border border-solana-border px-3 py-1.5 rounded-xl">
-                                    <img src="https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png" alt="SOL" class="w-6 h-6 rounded-full" onerror="this.src='https://placehold.co/24x24/9945FF/fff?text=SOL'">
-                                    <span class="font-bold text-sm">SOL</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Swap Icon Button -->
-                        <div class="flex justify-center -my-2 relative z-10">
-                            <div class="bg-solana-card border border-solana-purple/50 w-10 h-10 rounded-full flex items-center justify-center text-solana-green shadow-lg">
-                                <i class="fa-solid fa-arrow-down-up-lock"></i>
-                            </div>
-                        </div>
-
-                        <!-- To (TLX) -->
-                        <div class="bg-black/50 border border-solana-border p-4 rounded-2xl space-y-2">
-                            <div class="flex justify-between text-xs text-gray-400 font-semibold">
-                                <span>Kaphatsz (Vétel)</span>
-                                <span>Egyenleg: <span id="userTlxBalance">0.00</span> TLX</span>
-                            </div>
-                            <div class="flex items-center justify-between gap-4">
-                                <input type="number" id="tlxInput" placeholder="0.0" readonly class="bg-transparent text-2xl font-bold text-solana-green focus:outline-none w-full">
-                                <div class="flex items-center space-x-2 bg-solana-card border border-solana-border px-3 py-1.5 rounded-xl">
-                                    <div class="w-6 h-6 rounded-full btn-gradient flex items-center justify-center font-bold text-[10px] text-black">TLX</div>
-                                    <span class="font-bold text-sm">TLX</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Dynamic Rates & Slippage -->
-                        <div class="bg-solana-card/50 p-3 rounded-xl border border-solana-border/50 text-xs space-y-1.5 text-gray-300">
-                            <div class="flex justify-between">
-                                <span>Árfolyam arány:</span>
-                                <span class="font-mono text-solana-green">1 SOL ≈ 806,450.5 TLX</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Becsült Gázdíj (Solana Network):</span>
-                                <span class="font-mono">~0.000005 SOL</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Slippage Tolerance:</span>
-                                <span class="font-mono text-white">0.5%</span>
-                            </div>
-                        </div>
-
-                        <!-- Action Button -->
-                        <button id="swapActionButton" onclick="executeSwap()" class="w-full btn-gradient text-black font-extrabold py-4 rounded-2xl text-base shadow-xl uppercase tracking-wider transition">
-                            Swap Tranzakció Végrehajtása
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Top Airdrop Winners Section -->
-        <section id="airdrop" class="scroll-mt-28 space-y-8">
-            <div class="text-center max-w-2xl mx-auto space-y-2">
-                <h2 class="text-3xl font-black tracking-tight text-white">
-                    <i class="fa-solid fa-trophy text-yellow-400 mr-2"></i> Első Hivatalos Airdrop Nyertesek
-                </h2>
-                <p class="text-gray-400 text-sm">
-                    Gratulálunk a legelső két szerencsés Solana felhasználónak, akik egyenként <strong class="text-solana-green">555,555 TLX</strong> airdrop jutalomban részesültek!
-                </p>
+                <button class="btn-swap" onclick="executeSwap()">Kereskedés Raydium / Jupiter-en</button>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Winner 1 -->
-                <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-yellow-400 relative overflow-hidden flex flex-col justify-between">
-                    <div class="flex items-start justify-between">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-2xl bg-yellow-400/20 border border-yellow-400/40 flex items-center justify-center text-yellow-400 text-2xl font-bold">
-                                🥇
-                            </div>
-                            <div>
-                                <span class="text-xs text-yellow-400 font-bold uppercase tracking-widest block">#1. Top Recipient</span>
-                                <h3 class="text-lg font-bold text-white">Airdrop Winner 01</h3>
-                            </div>
-                        </div>
-                        <span class="bg-solana-green/20 text-solana-green border border-solana-green/30 text-xs font-bold px-3 py-1 rounded-full">Sikeresen Kiutalva</span>
-                    </div>
-
-                    <div class="my-6 space-y-2">
-                        <span class="text-xs text-gray-400 block font-semibold">Solana Tárca Cím:</span>
-                        <div class="bg-black/60 p-3 rounded-xl border border-solana-border flex items-center justify-between">
-                            <span class="font-mono text-xs sm:text-sm text-gray-200 truncate">8BoMXwdVRLszBQgT3st2y1M87Mr4peXArSPVa9yzEj2F</span>
-                            <button onclick="copyToClipboard('8BoMXwdVRLszBQgT3st2y1M87Mr4peXArSPVa9yzEj2F')" class="text-gray-400 hover:text-solana-green ml-2">
-                                <i class="fa-regular fa-copy"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-between border-t border-solana-border/60 pt-4">
-                        <span class="text-xs text-gray-400">Jutalmazási Összeg:</span>
-                        <span class="text-xl font-black text-solana-green">555,555 TLX</span>
-                    </div>
+            <!-- Tokenomics Card -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fa-solid fa-chart-pie"></i> Tokenomika
                 </div>
-
-                <!-- Winner 2 -->
-                <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-gray-300 relative overflow-hidden flex flex-col justify-between">
-                    <div class="flex items-start justify-between">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-2xl bg-gray-300/20 border border-gray-300/40 flex items-center justify-center text-gray-300 text-2xl font-bold">
-                                🥈
-                            </div>
-                            <div>
-                                <span class="text-xs text-gray-300 font-bold uppercase tracking-widest block">#2. Top Recipient</span>
-                                <h3 class="text-lg font-bold text-white">Airdrop Winner 02</h3>
-                            </div>
-                        </div>
-                        <span class="bg-solana-green/20 text-solana-green border border-solana-green/30 text-xs font-bold px-3 py-1 rounded-full">Sikeresen Kiutalva</span>
-                    </div>
-
-                    <div class="my-6 space-y-2">
-                        <span class="text-xs text-gray-400 block font-semibold">Solana Tárca Cím:</span>
-                        <div class="bg-black/60 p-3 rounded-xl border border-solana-border flex items-center justify-between">
-                            <span class="font-mono text-xs sm:text-sm text-gray-200 truncate">6HXGpuDNhHmhu4Y26XLysL52pcPBZtuwYzpU91eC4jZJ</span>
-                            <button onclick="copyToClipboard('6HXGpuDNhHmhu4Y26XLysL52pcPBZtuwYzpU91eC4jZJ')" class="text-gray-400 hover:text-solana-green ml-2">
-                                <i class="fa-regular fa-copy"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-between border-t border-solana-border/60 pt-4">
-                        <span class="text-xs text-gray-400">Jutalmazási Összeg:</span>
-                        <span class="text-xl font-black text-solana-green">555,555 TLX</span>
-                    </div>
+                <div style="height: 230px; position: relative;">
+                    <canvas id="tokenomicsChart"></canvas>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Tokenomics Section -->
-        <section id="tokenomics" class="scroll-mt-28 space-y-8">
-            <div class="text-center max-w-2xl mx-auto space-y-2">
-                <h2 class="text-3xl font-black tracking-tight text-white">Tokenomika & Eloszlás</h2>
-                <p class="text-gray-400 text-sm">Átlátható, közösség-orientált token elosztás a fenntartható növekedésért</p>
+        <!-- Airdrop Winners Section -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fa-solid fa-trophy" style="color: #ffd700;"></i> Hivatalos Airdrop Nyertesek (Phase 1)
+            </div>
+            
+            <div class="airdrop-item">
+                <div class="airdrop-user">
+                    <span class="badge-winner">#1 Nyertes</span>
+                    <span style="font-family: monospace;">8BoMXwdVRLszBQgT3st2y1M87Mr4peXArSPVa9yzEj2F</span>
+                </div>
+                <div class="amount">+555,555 TLX</div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <!-- Doughnut Chart -->
-                <div class="lg:col-span-5 glass-panel p-6 rounded-3xl flex items-center justify-center min-h-[320px]">
-                    <canvas id="tokenomicsChart" class="max-w-[280px] max-h-[280px]"></canvas>
+            <div class="airdrop-item">
+                <div class="airdrop-user">
+                    <span class="badge-winner">#2 Nyertes</span>
+                    <span style="font-family: monospace;">6HXGpuDNhHmhu4Y26XLysL52pcPBZtuwYzpU91eC4jZJ</span>
                 </div>
-
-                <!-- Breakdown Progress Bars -->
-                <div class="lg:col-span-7 space-y-6">
-                    <!-- Item 1 -->
-                    <div class="bg-solana-card p-4 rounded-2xl border border-solana-border space-y-2">
-                        <div class="flex justify-between items-center text-sm">
-                            <span class="font-bold text-white flex items-center gap-2">
-                                <span class="w-3 h-3 rounded-full bg-solana-purple"></span> Közösségi Airdropok
-                            </span>
-                            <span class="font-mono font-bold text-solana-purple">40% (1,111,110 TLX)</span>
-                        </div>
-                        <div class="w-full bg-black/50 h-3 rounded-full overflow-hidden">
-                            <div class="bg-solana-purple h-full rounded-full" style="width: 40%"></div>
-                        </div>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div class="bg-solana-card p-4 rounded-2xl border border-solana-border space-y-2">
-                        <div class="flex justify-between items-center text-sm">
-                            <span class="font-bold text-white flex items-center gap-2">
-                                <span class="w-3 h-3 rounded-full bg-solana-green"></span> Kezdő Liquidity Pool
-                            </span>
-                            <span class="font-mono font-bold text-solana-green">30% (749,999 TLX)</span>
-                        </div>
-                        <div class="w-full bg-black/50 h-3 rounded-full overflow-hidden">
-                            <div class="bg-solana-green h-full rounded-full" style="width: 30%"></div>
-                        </div>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div class="bg-solana-card p-4 rounded-2xl border border-solana-border space-y-2">
-                        <div class="flex justify-between items-center text-sm">
-                            <span class="font-bold text-white flex items-center gap-2">
-                                <span class="w-3 h-3 rounded-full bg-cyan-400"></span> Staking & Ökoszisztéma Tartalék
-                            </span>
-                            <span class="font-mono font-bold text-cyan-400">30% (738,891 TLX)</span>
-                        </div>
-                        <div class="w-full bg-black/50 h-3 rounded-full overflow-hidden">
-                            <div class="bg-cyan-400 h-full rounded-full" style="width: 30%"></div>
-                        </div>
-                    </div>
-                </div>
+                <div class="amount">+555,555 TLX</div>
             </div>
-        </section>
-
-    </main>
-
-    <!-- Notification Toast -->
-    <div id="toastNotification" class="fixed bottom-6 right-6 transform translate-y-32 opacity-0 transition-all duration-300 z-50 glass-panel-glow border border-solana-green/50 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center space-x-3">
-        <i class="fa-solid fa-circle-check text-solana-green text-xl"></i>
-        <span id="toastMessage" class="text-sm font-semibold">Sikeres művelet!</span>
+        </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="border-t border-solana-border/50 py-8 mt-16 glass-panel">
-        <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
-            <div class="flex justify-center items-center space-x-6 text-xl text-gray-400">
-                <a href="https://github.com/veresbarnabas97-ui/TetraLux-Portal" target="_blank" class="hover:text-solana-green transition"><i class="fa-brands fa-github"></i></a>
-                <a href="#" class="hover:text-solana-green transition"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="#" class="hover:text-solana-green transition"><i class="fa-brands fa-telegram"></i></a>
-            </div>
-            <p class="text-xs text-gray-400">
-                &copy; 2026 TetraLux (TLX) Portal. Minden jog fenntartva. Fejlesztve a Solana Blokkláncra.
-            </p>
-        </div>
-    </footer>
+    <div id="toast">Cím másolva a vágólapra!</div>
 
-    <!-- Web3 Scripts -->
     <script>
-        let isWalletConnected = false;
-        let userSolBalance = 1.45;
-        let userTlxBalance = 0.00;
-        const mintAddr = "5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3";
-        const ratePerSol = 806450.538; // 749999 / 0.93
+        const MINT_ADDRESS = "5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3";
+        const SOL_POOL = 0.93;
+        const TLX_POOL = 749999;
+        const RATE = TLX_POOL / SOL_POOL; // ~806450.53 TLX per SOL
 
-        // Page load setup
+        let userWallet = null;
+
+        // Init Tokenomics Chart
         window.onload = function() {
-            initChart();
-            calculateSwap();
-        };
-
-        // Mint Address copy function
-        function copyMintAddress() {
-            copyToClipboard(mintAddr);
-            const copyBtnText = document.getElementById('copyBtnText');
-            copyBtnText.innerText = 'Másolva!';
-            setTimeout(() => { copyBtnText.innerText = 'Másolás'; }, 2000);
-        }
-
-        // General copy helper
-        function copyToClipboard(text) {
-            const tempInput = document.createElement("input");
-            tempInput.value = text;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            showToast("Másolva a vágólapra!");
-        }
-
-        // Toast notification handler
-        function showToast(msg) {
-            const toast = document.getElementById('toastNotification');
-            const toastMsg = document.getElementById('toastMessage');
-            toastMsg.innerText = msg;
-            toast.classList.remove('translate-y-32', 'opacity-0');
-            setTimeout(() => {
-                toast.classList.add('translate-y-32', 'opacity-0');
-            }, 3000);
-        }
-
-        // Dynamic Swap Calculation
-        function calculateSwap() {
-            const solVal = parseFloat(document.getElementById('solInput').value) || 0;
-            const tlxVal = (solVal * ratePerSol).toFixed(2);
-            document.getElementById('tlxInput').value = tlxVal;
-        }
-
-        function refreshSwapRate() {
-            showToast("Árfolyam sikeresen frissítve!");
-            calculateSwap();
-        }
-
-        // Wallet Connection Logic (Phantom / Web3 simulation)
-        function toggleWalletConnect() {
-            const btnText = document.getElementById('walletBtnText');
-            
-            if (!isWalletConnected) {
-                // Connect
-                if (window.solana && window.solana.isPhantom) {
-                    window.solana.connect().then((res) => {
-                        const pubKey = res.publicKey.toString();
-                        btnText.innerText = pubKey.substring(0, 4) + '...' + pubKey.substring(pubKey.length - 4);
-                        isWalletConnected = true;
-                        updateBalances();
-                        showToast("Phantom Tárca Csatlakoztatva!");
-                    }).catch(() => {
-                        simulateWalletConnection(btnText);
-                    });
-                } else {
-                    simulateWalletConnection(btnText);
-                }
-            } else {
-                // Disconnect
-                isWalletConnected = false;
-                btnText.innerText = 'Tárca Csatlakoztatása';
-                document.getElementById('userSolBalance').innerText = '0.00';
-                document.getElementById('userTlxBalance').innerText = '0.00';
-                showToast("Tárca lecsatlakoztatva.");
-            }
-        }
-
-        function simulateWalletConnection(btnText) {
-            const mockAddress = "8BoM...Ej2F";
-            btnText.innerText = mockAddress;
-            isWalletConnected = true;
-            updateBalances();
-            showToast("Solana Tárca Csatlakoztatva (Web3 Demo)");
-        }
-
-        function updateBalances() {
-            document.getElementById('userSolBalance').innerText = userSolBalance.toFixed(2);
-            document.getElementById('userTlxBalance').innerText = userTlxBalance.toLocaleString('hu-HU');
-        }
-
-        // Execute Swap Action
-        function executeSwap() {
-            const solAmount = parseFloat(document.getElementById('solInput').value) || 0;
-            const tlxAmount = parseFloat(document.getElementById('tlxInput').value) || 0;
-
-            if (solAmount <= 0) {
-                showToast("Kérjük, adj meg érvényes SOL összeget!");
-                return;
-            }
-
-            if (!isWalletConnected) {
-                showToast("Először csatlakoztasd a tárcádat!");
-                return;
-            }
-
-            if (solAmount > userSolBalance) {
-                showToast("Nincs elegendő SOL egyenleged a tranzakcióhoz!");
-                return;
-            }
-
-            // Execute mock tx
-            userSolBalance -= solAmount;
-            userTlxBalance += tlxAmount;
-            updateBalances();
-            showToast(`Sikeres Swap! Kaptál ${tlxAmount.toLocaleString('hu-HU')} TLX-et!`);
-        }
-
-        // Initialize Chart.js Doughnut for Tokenomics
-        function initChart() {
             const ctx = document.getElementById('tokenomicsChart').getContext('2d');
             new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Közösségi Airdropok', 'Kezdő Liquidity Pool', 'Staking & Tartalék'],
+                    labels: ['Kezdő Liquidity Pool', 'Airdrop Alap', 'Fejlesztés & Ökoszisztéma'],
                     datasets: [{
-                        data: [40, 30, 30],
-                        backgroundColor: [
-                            '#9945FF',
-                            '#14F195',
-                            '#22d3ee'
-                        ],
-                        borderWidth: 0,
-                        hoverOffset: 6
+                        data: [749999, 1111110, 500000],
+                        backgroundColor: ['#00f0ff', '#7000ff', '#14F195'],
+                        borderWidth: 0
                     }]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: true,
+                    maintainAspectRatio: false,
                     plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    cutout: '70%'
+                        legend: { position: 'bottom', labels: { color: '#94a3b8' } }
+                    }
                 }
             });
+        };
+
+        // Connect Wallet Function
+        async function connectWallet() {
+            if ("solana" in window) {
+                try {
+                    const resp = await window.solana.connect();
+                    userWallet = resp.publicKey.toString();
+                    
+                    const btn = document.getElementById('connectWalletBtn');
+                    btn.innerHTML = `<i class="fa-solid fa-check"></i> ${userWallet.substring(0, 4)}...${userWallet.substring(userWallet.length - 4)}`;
+                    btn.style.background = "rgba(0, 240, 255, 0.2)";
+                    btn.style.border = "1px solid var(--primary-cyan)";
+                    
+                    showToast("Tárca sikeresen csatlakoztatva!");
+                    fetchBalances();
+                } catch (err) {
+                    showToast("Csatlakozás elutasítva!");
+                }
+            } else {
+                alert("Phantom vagy Solflare tárca nem található! Kérjük telepíts egy Solana tárcát.");
+            }
+        }
+
+        // Live Balances Fetching (Solana RPC)
+        async function fetchBalances() {
+            if (!userWallet) return;
+            try {
+                const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
+                const pubKey = new solanaWeb3.PublicKey(userWallet);
+                const balance = await connection.getBalance(pubKey);
+                document.getElementById('solBalance').innerText = `Egyenleg: ${(balance / solanaWeb3.LAMPORTS_PER_SOL).toFixed(3)} SOL`;
+            } catch(e) {
+                console.log("RPC Error", e);
+            }
+        }
+
+        // Calculation logic based on Pool
+        function calculateSwap() {
+            const val = parseFloat(document.getElementById('inputSol').value);
+            if (!isNaN(val) && val > 0) {
+                document.getElementById('outputTlx').value = (val * RATE).toFixed(2);
+            } else {
+                document.getElementById('outputTlx').value = "";
+            }
+        }
+
+        // Swap redirect to Raydium / Jupiter with token mint
+        function executeSwap() {
+            const swapUrl = `https://jup.ag/swap/SOL-${MINT_ADDRESS}`;
+            window.open(swapUrl, '_blank');
+        }
+
+        // Copy Mint Address
+        function copyMint() {
+            navigator.clipboard.writeText(MINT_ADDRESS);
+            showToast("Token Mint cím másolva!");
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById("toast");
+            toast.innerText = msg;
+            toast.className = "show";
+            setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
         }
     </script>
 </body>
 </html>
-```
+
