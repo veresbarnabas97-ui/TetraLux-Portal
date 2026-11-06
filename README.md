@@ -11,7 +11,7 @@ A likviditási pool sikeresen elindult a **Raydium DEX** felületén!
 * **Hálózat:** Solana (Mainnet)
 * **Token Neve:** TetraLux (TLX)
 * **Teljes Készlet (Total Supply):** 99 999 999 TLX (Véges készlet)
-* **Token Mint Address:** `AgwAVqtaxGy2B2PbGnPSKtjLYQecV5hEfMMcC4ditv77`
+* **Token Mint Address:** `5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3`
 * **Likviditási Pool Páros:** 0.93 SOL + 749 999 TLX
 * **Solscan Pool Tranzakció:** [Megtekintés Solscanen](https://solscan.io/tx/oKqnuRLTNEk8vT4142LF9tNhzFczae6zFyfXJdB5nTk)
 
