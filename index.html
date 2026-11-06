@@ -1,768 +1,371 @@
 <!DOCTYPE html>
-<html lang="hu" class="dark">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TetraLux (TLX) | Solana High-Tech Cyberpunk Portal</title>
+    <title>TetraLux (TLX) - Decentralized Web3 Portal</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        cyan: {
-                            400: '#22d3ee',
-                            500: '#06b6d4',
-                            900: '#164e63',
-                        },
-                        neonPurple: '#a855f7',
-                        neonBlue: '#3b82f6',
-                        cyberDark: '#080b14',
-                        cyberCard: '#0f172a',
-                    },
-                    boxShadow: {
-                        'neon-cyan': '0 0 20px rgba(34, 211, 238, 0.35)',
-                        'neon-purple': '0 0 20px rgba(168, 85, 247, 0.35)',
-                        'glow-lg': '0 0 35px rgba(6, 182, 212, 0.4)',
+                        cyber: {
+                            bg: '#080914',
+                            card: '#0f1123',
+                            border: '#1f2442',
+                            neonCyan: '#00f3ff',
+                            neonMagenta: '#ff007f',
+                            neonPurple: '#8a2be2',
+                            green: '#00ff66'
+                        }
                     },
                     fontFamily: {
-                        mono: ['JetBrains Mono', 'Courier New', 'monospace'],
-                        sans: ['Inter', 'sans-serif'],
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        rajdhani: ['Rajdhani', 'sans-serif']
                     }
                 }
             }
         }
     </script>
-    <!-- Lucide Icons & FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-    
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #05070e;
-            color: #f3f4f6;
-            overflow-x: hidden;
+            background-color: #080914;
+            color: #e2e8f0;
+            font-family: 'Rajdhani', sans-serif;
         }
-
-        /* Cyberpunk Grid Background Effect */
-        .bg-grid {
-            background-size: 40px 40px;
-            background-image: 
-                linear-gradient(to right, rgba(34, 211, 238, 0.04) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(34, 211, 238, 0.04) 1px, transparent 1px);
+        .glow-text-cyan {
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.7), 0 0 20px rgba(0, 243, 255, 0.4);
         }
-
-        .cyber-glow-bg {
-            background: radial-gradient(circle at 50% 20%, rgba(168, 85, 247, 0.15) 0%, rgba(6, 182, 212, 0.1) 40%, rgba(5, 7, 14, 0) 70%);
+        .glow-box-cyan {
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.25);
         }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .glow-box-magenta {
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.25);
         }
-        ::-webkit-scrollbar-track {
-            background: #080b14;
+        .gradient-text {
+            background: linear-gradient(135deg, #00f3ff 0%, #ff007f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #06b6d4;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #a855f7;
-        }
-
-        /* Glassmorphism */
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(34, 211, 238, 0.2);
-        }
-
-        .glass-panel-purple {
-            background: rgba(24, 16, 45, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(168, 85, 247, 0.25);
-        }
-
-        /* Pulse Animation */
-        @keyframes pulse-glow {
-            0%, 100% { opacity: 0.6; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.02); }
-        }
-        .pulse-effect {
-            animation: pulse-glow 3s infinite ease-in-out;
+        .glass-card {
+            background: rgba(15, 17, 35, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 243, 255, 0.15);
         }
     </style>
 </head>
-<body class="bg-grid relative min-h-screen">
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyber-neonCyan selection:text-black">
 
-    <!-- Top Glow Overlay -->
-    <div class="fixed top-0 left-0 w-full h-[600px] cyber-glow-bg pointer-events-none z-0"></div>
-
-    <!-- Notification Toast -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 ease-out glass-panel px-6 py-4 rounded-xl shadow-neon-cyan border border-cyan-400/50 flex items-center space-x-3 text-cyan-300">
-        <i class="fa-solid fa-circle-check text-xl text-cyan-400"></i>
-        <span id="toast-message" class="font-mono text-sm font-semibold">Értesítés</span>
-    </div>
-
-    <!-- Navigation Header -->
-    <header class="relative z-10 sticky top-0 border-b border-cyan-500/20 glass-panel">
+    <!-- Header Navigation -->
+    <header class="border-b border-cyber-border bg-cyber-bg/90 backdrop-filter blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Logo & Brand -->
             <div class="flex items-center space-x-3">
-                <div class="relative flex items-center justify-center w-11 h-11 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 shadow-neon-cyan">
-                    <i class="fa-solid fa-cube text-white text-2xl"></i>
-                    <div class="absolute -top-1 -right-1 w-3 h-3 bg-cyan-400 rounded-full animate-ping"></div>
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-cyber-neonCyan to-cyber-neonMagenta flex items-center justify-center font-orbitron font-bold text-black text-xl shadow-lg">
+                    TLX
                 </div>
-                <div>
-                    <span class="text-2xl font-black tracking-wider bg-gradient-to-r from-cyan-400 via-teal-200 to-purple-400 bg-clip-text text-transparent">
-                        TETRALUX
-                    </span>
-                    <span class="ml-2 text-xs font-mono font-bold bg-cyan-900/60 border border-cyan-400/30 text-cyan-300 px-2 py-0.5 rounded">
-                        $TLX
-                    </span>
-                </div>
+                <span class="font-orbitron font-extrabold text-2xl tracking-wider text-white">TETRA<span class="gradient-text">LUX</span></span>
             </div>
 
-            <!-- Navigation Links -->
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-300">
-                <a href="#stats" class="hover:text-cyan-400 transition-colors flex items-center space-x-1.5">
-                    <i class="fa-solid fa-chart-line text-xs"></i>
-                    <span>Statisztikák</span>
-                </a>
-                <a href="#swap" class="hover:text-cyan-400 transition-colors flex items-center space-x-1.5">
-                    <i class="fa-solid fa-right-left text-xs"></i>
-                    <span>Swap & Liquidity</span>
-                </a>
-                <a href="#roadmap" class="hover:text-cyan-400 transition-colors flex items-center space-x-1.5">
-                    <i class="fa-solid fa-map text-xs"></i>
-                    <span>Roadmap</span>
-                </a>
-                <a href="#github" class="hover:text-cyan-400 transition-colors flex items-center space-x-1.5">
-                    <i class="fa-brands fa-github text-xs"></i>
-                    <span>GitHub Files</span>
-                </a>
+            <nav class="hidden md:flex space-x-8 font-semibold tracking-wide">
+                <a href="#stats" class="hover:text-cyber-neonCyan transition">Statissztikák</a>
+                <a href="#swap" class="hover:text-cyber-neonCyan transition">Swap</a>
+                <a href="#wallets" class="hover:text-cyber-neonCyan transition">Walletek</a>
+                <a href="#roadmap" class="hover:text-cyber-neonCyan transition">Roadmap</a>
+                <a href="#github" class="hover:text-cyber-neonCyan transition">GitHub</a>
             </nav>
 
-            <!-- Wallet Action -->
-            <div class="flex items-center space-x-4">
-                <button id="connect-wallet-btn" onclick="toggleWallet()" class="relative group overflow-hidden px-5 py-2.5 rounded-xl font-mono text-sm font-bold bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-neon-cyan hover:shadow-glow-lg transition-all duration-300 active:scale-95">
-                    <span class="relative z-10 flex items-center space-x-2">
-                        <i class="fa-solid fa-wallet"></i>
-                        <span id="wallet-btn-text">Wallet csatlakoztatása</span>
-                    </span>
-                </button>
-            </div>
+            <button onclick="connectWallet()" id="walletBtn" class="bg-gradient-to-r from-cyber-neonCyan to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-orbitron font-bold px-6 py-2.5 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
+                <i class="fa-solid font-bold fa-wallet mr-2"></i> Wallet Csatlakozás
+            </button>
         </div>
     </header>
 
-    <!-- Main Body Container -->
-    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20 space-y-16">
-
-        <!-- Hero Banner & Contract Address Bar -->
-        <section class="text-center space-y-6 pt-4">
-            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-cyan-400/30 bg-cyan-950/40 text-cyan-300 text-xs font-mono mb-2">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Solana Mainnet Live Protocol</span>
-            </div>
-
-            <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white uppercase">
-                TetraLux <span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-teal-300 bg-clip-text text-transparent">Cyber Portal</span>
+    <!-- Hero & Main Stats Section -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+        <div class="text-center space-y-4">
+            <h1 class="font-orbitron text-4xl sm:text-6xl font-black uppercase tracking-wider">
+                A Jövő <span class="gradient-text">Decentralizált</span> Fénye
             </h1>
-
-            <p class="max-w-2xl mx-auto text-slate-400 text-base sm:text-lg font-light leading-relaxed">
-                DeCentralized high-speed liquidity ecosystem built on Solana. Teljes átláthatóság, közösségi vezérlésű governance és fejlesztési ütemterv.
+            <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+                Hivatalos Solana Web3 Portal a TetraLux (TLX) ökoszisztémához. Magas likviditás, alacsony tranzakciós díjak és közvetlen DEX integráció.
             </p>
+        </div>
 
-            <!-- Mint Address Box -->
-            <div class="max-w-2xl mx-auto glass-panel rounded-2xl p-4 shadow-neon-cyan border border-cyan-500/30">
-                <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
-                    <div class="flex items-center space-x-3 w-full sm:w-auto overflow-hidden">
-                        <div class="p-2.5 rounded-lg bg-cyan-500/10 border border-cyan-400/30 text-cyan-400 shrink-0">
-                            <i class="fa-solid fa-key text-base"></i>
-                        </div>
-                        <div class="text-left overflow-hidden">
-                            <p class="text-xs font-mono text-slate-400 uppercase tracking-wider">Token Mint Address</p>
-                            <p id="mint-address" class="text-xs sm:text-sm font-mono font-bold text-cyan-200 truncate">
-                                5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3
-                            </p>
-                        </div>
-                    </div>
-                    <button onclick="copyToClipboard('5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3', 'Mint address másolva!')" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/40 text-cyan-300 font-mono text-xs font-bold transition-all flex items-center justify-center space-x-2 shrink-0 active:scale-95">
-                        <i class="fa-regular fa-copy"></i>
-                        <span>Másolás</span>
-                    </button>
+        <!-- Token Contract Address Banner -->
+        <div class="glass-card rounded-2xl p-6 glow-box-cyan flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-key text-cyber-neonCyan text-2xl"></i>
+                <div>
+                    <div class="text-xs text-gray-400 font-orbitron uppercase">Token Mint Address (Solana SPL)</div>
+                    <div class="font-mono text-sm sm:text-base font-bold text-white break-all" id="mintAddress">5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3</div>
                 </div>
             </div>
+            <button onclick="copyToClipboard('5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3', 'Contract Címed')" class="bg-cyber-border hover:bg-cyber-neonCyan hover:text-black font-semibold px-4 py-2 rounded-lg transition flex items-center gap-2 whitespace-nowrap">
+                <i class="fa-regular fa-copy"></i> Másolás
+            </button>
+        </div>
 
-            <!-- DEX External Links -->
-            <div class="flex flex-wrap justify-center gap-4 pt-2">
-                <a href="https://raydium.io" target="_blank" class="px-5 py-2.5 rounded-xl glass-panel hover:border-cyan-400/60 text-slate-300 hover:text-cyan-400 font-mono text-xs font-semibold transition-all flex items-center space-x-2">
-                    <i class="fa-solid fa-bolt text-purple-400"></i>
-                    <span>Raydium Swap</span>
-                </a>
-                <a href="https://dexscreener.com/solana/5vxfqnlvetp6xqzajebckebrkwyzhfoduobjxhxeqa3" target="_blank" class="px-5 py-2.5 rounded-xl glass-panel hover:border-cyan-400/60 text-slate-300 hover:text-cyan-400 font-mono text-xs font-semibold transition-all flex items-center space-x-2">
-                    <i class="fa-solid fa-chart-simple text-cyan-400"></i>
-                    <span>DexScreener Live</span>
-                </a>
-                <a href="https://solscan.io/token/5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3" target="_blank" class="px-5 py-2.5 rounded-xl glass-panel hover:border-cyan-400/60 text-slate-300 hover:text-cyan-400 font-mono text-xs font-semibold transition-all flex items-center space-x-2">
-                    <i class="fa-solid fa-cubes text-blue-400"></i>
-                    <span>Solscan Explorer</span>
-                </a>
+        <!-- Metric Cards Grid -->
+        <div id="stats" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass-card p-6 rounded-xl space-y-2">
+                <div class="text-gray-400 text-sm font-orbitron">Market Cap</div>
+                <div class="text-3xl font-black font-orbitron text-white">$11,550</div>
+                <div class="text-cyber-green text-xs font-bold"><i class="fa-solid fa-arrow-trend-up"></i> Live Tracking</div>
             </div>
-        </section>
-
-        <!-- Live Stats Metric Grid -->
-        <section id="stats" class="space-y-6">
-            <div class="flex items-center justify-between border-b border-cyan-500/20 pb-4">
-                <div class="flex items-center space-x-3">
-                    <div class="w-3 h-3 bg-cyan-400 rounded-full animate-ping"></div>
-                    <h2 class="text-xl font-bold font-mono text-cyan-300 uppercase tracking-wide">Élő Token Teljesítmény</h2>
-                </div>
-                <span class="text-xs font-mono text-slate-400">Frissítve: Élő Adatfeed</span>
+            <div class="glass-card p-6 rounded-xl space-y-2">
+                <div class="text-gray-400 text-sm font-orbitron">Liquidity Pool</div>
+                <div class="text-2xl font-black font-orbitron text-cyber-neonCyan">0.93 SOL / 750K TLX</div>
+                <div class="text-gray-400 text-xs">Raydium DEX Pair</div>
             </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                <!-- Metric 1: Price -->
-                <div class="glass-panel p-5 rounded-2xl border-l-4 border-l-emerald-400 hover:shadow-neon-cyan transition-all">
-                    <div class="flex justify-between items-start">
-                        <span class="text-xs font-mono text-slate-400 uppercase">Jelenlegi Ár</span>
-                        <span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 rounded text-xs font-mono font-bold flex items-center space-x-1">
-                            <i class="fa-solid fa-arrow-trend-up"></i>
-                            <span>+25.91%</span>
-                        </span>
-                    </div>
-                    <div class="mt-3">
-                        <p class="text-2xl sm:text-3xl font-black font-mono text-white">$0.0001155</p>
-                        <p class="text-xs text-slate-400 mt-1 font-mono">0.00000089 SOL / TLX</p>
-                    </div>
-                </div>
-
-                <!-- Metric 2: Market Cap / FDV -->
-                <div class="glass-panel p-5 rounded-2xl border-l-4 border-l-cyan-400 hover:shadow-neon-cyan transition-all">
-                    <div class="flex justify-between items-start">
-                        <span class="text-xs font-mono text-slate-400 uppercase">Market Cap / FDV</span>
-                        <i class="fa-solid fa-chart-pie text-cyan-400"></i>
-                    </div>
-                    <div class="mt-3">
-                        <p class="text-2xl sm:text-3xl font-black font-mono text-white">$11.55K</p>
-                        <p class="text-xs text-slate-400 mt-1 font-mono">Teljes Kínálat Alapján</p>
-                    </div>
-                </div>
-
-                <!-- Metric 3: Total Supply -->
-                <div class="glass-panel p-5 rounded-2xl border-l-4 border-l-purple-500 hover:shadow-neon-purple transition-all">
-                    <div class="flex justify-between items-start">
-                        <span class="text-xs font-mono text-slate-400 uppercase">Total Supply</span>
-                        <i class="fa-solid fa-coins text-purple-400"></i>
-                    </div>
-                    <div class="mt-3">
-                        <p class="text-2xl sm:text-3xl font-black font-mono text-white">100.00M</p>
-                        <p class="text-xs text-slate-400 mt-1 font-mono">TLX Token Cirkuláció</p>
-                    </div>
-                </div>
-
-                <!-- Metric 4: Liquidity Pool -->
-                <div class="glass-panel p-5 rounded-2xl border-l-4 border-l-blue-400 hover:shadow-neon-cyan transition-all">
-                    <div class="flex justify-between items-start">
-                        <span class="text-xs font-mono text-slate-400 uppercase">Likviditási Alap</span>
-                        <i class="fa-solid fa-droplet text-blue-400"></i>
-                    </div>
-                    <div class="mt-3">
-                        <p class="text-2xl sm:text-3xl font-black font-mono text-white">$76.46</p>
-                        <p class="text-xs text-slate-300 mt-1 font-mono font-bold">0.93 SOL / 750k TLX</p>
-                    </div>
-                </div>
+            <div class="glass-card p-6 rounded-xl space-y-2">
+                <div class="text-gray-400 text-sm font-orbitron">Token Price</div>
+                <div class="text-3xl font-black font-orbitron text-white">$0.0001155</div>
+                <div class="text-cyber-green text-xs font-bold">+25.91% (24h)</div>
             </div>
-
-            <!-- Secondary Metrics Bar -->
-            <div class="glass-panel rounded-2xl p-4 flex flex-wrap justify-between items-center gap-4 text-xs font-mono text-slate-300 border border-slate-800">
-                <div class="flex items-center space-x-2">
-                    <span class="text-slate-500">24H Kereskedési Volumen:</span>
-                    <span class="text-cyan-400 font-bold">$199.77</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <span class="text-slate-500">Kezdeti Pool Ráta:</span>
-                    <span class="text-purple-300 font-bold">1 SOL ≈ 806,451 TLX</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <span class="text-slate-500">Solana Network Fee:</span>
-                    <span class="text-emerald-400 font-bold">&lt; 0.00005 SOL</span>
-                </div>
+            <div class="glass-card p-6 rounded-xl space-y-2">
+                <div class="text-gray-400 text-sm font-orbitron">Total Supply</div>
+                <div class="text-3xl font-black font-orbitron text-white">100,000,000</div>
+                <div class="text-gray-400 text-xs">TLX Token Max Supply</div>
             </div>
-        </section>
+        </div>
 
-        <!-- Interactive Swap & Pool Details Section -->
-        <section id="swap" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Swap Section & Admin Wallets Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
             
-            <!-- Swap Widget (Left Side - 7 Cols) -->
-            <div class="lg:col-span-7 glass-panel-purple rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-neon-purple border border-purple-500/30">
-                <div class="flex justify-between items-center mb-6">
-                    <div>
-                        <h3 class="text-xl font-bold font-mono text-white flex items-center gap-2">
-                            <i class="fa-solid fa-right-left text-purple-400"></i>
-                            <span>TetraLux Swap Widget</span>
-                        </h3>
-                        <p class="text-xs text-slate-400 font-mono">Simulated DEX Liquidity Engine</p>
-                    </div>
-                    <span class="text-xs font-mono px-3 py-1 bg-purple-900/50 border border-purple-400/40 text-purple-300 rounded-full">
-                        Raydium Protocol
-                    </span>
+            <!-- Interaktív Swap Widget -->
+            <div id="swap" class="glass-card p-6 sm:p-8 rounded-2xl glow-box-magenta space-y-6">
+                <div class="flex justify-between items-center border-b border-cyber-border pb-4">
+                    <h3 class="font-orbitron font-bold text-xl text-white">TetraLux Quick Swap</h3>
+                    <span class="text-xs text-cyber-neonCyan bg-cyber-border px-3 py-1 rounded-full"><i class="fa-solid fa-bolt"></i> Instant Trade</span>
                 </div>
 
-                <form onsubmit="handleSwap(event)" class="space-y-4">
-                    <!-- Pay Input -->
-                    <div class="bg-slate-900/90 rounded-2xl p-4 border border-slate-700/60 focus-within:border-cyan-400 transition-all">
-                        <div class="flex justify-between text-xs font-mono text-slate-400 mb-2">
-                            <span>Eladsz</span>
-                            <span>Egyenleg: <span id="sol-balance">1.50</span> SOL</span>
+                <div class="space-y-4">
+                    <!-- Pay Box -->
+                    <div class="bg-cyber-bg p-4 rounded-xl border border-cyber-border">
+                        <div class="flex justify-between text-xs text-gray-400 mb-1">
+                            <span>You Pay</span>
+                            <span>Balance: <span id="solBalance">0.00</span> SOL</span>
                         </div>
-                        <div class="flex items-center justify-between gap-3">
-                            <input id="swap-input-sol" type="number" step="0.01" value="0.1" oninput="calculateSwap()" class="w-full bg-transparent text-2xl font-mono font-bold text-white focus:outline-none" placeholder="0.0">
-                            <div class="flex items-center space-x-2 bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-700 shrink-0">
-                                <img src="https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png" alt="SOL" class="w-6 h-6 rounded-full" onerror="this.src='https://placehold.co/24x24/9945FF/fff?text=SOL'">
-                                <span class="font-mono font-bold text-sm">SOL</span>
-                            </div>
+                        <div class="flex justify-between items-center">
+                            <input type="number" id="solInput" placeholder="0.0" oninput="calculateSwap()" class="bg-transparent text-2xl font-bold font-mono focus:outline-none w-full text-white">
+                            <span class="font-orbitron font-bold bg-cyber-border px-3 py-1 rounded-lg text-white">SOL</span>
                         </div>
                     </div>
 
-                    <!-- Swap Icon Divider -->
-                    <div class="flex justify-center -my-2 relative z-10">
-                        <button type="button" onclick="reverseSwap()" class="p-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white shadow-neon-purple transition-all active:scale-95 border border-purple-300/40">
-                            <i class="fa-solid fa-arrow-down-up-lock text-sm"></i>
+                    <!-- Arrow Separator -->
+                    <div class="text-center text-cyber-neonCyan">
+                        <i class="fa-solid fa-arrow-down-up-lock text-xl"></i>
+                    </div>
+
+                    <!-- Receive Box -->
+                    <div class="bg-cyber-bg p-4 rounded-xl border border-cyber-border">
+                        <div class="flex justify-between text-xs text-gray-400 mb-1">
+                            <span>You Receive (Estimated)</span>
+                            <span>Rate: 1 SOL ≈ 806,450 TLX</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <input type="text" id="tlxOutput" placeholder="0.0" readonly class="bg-transparent text-2xl font-bold font-mono focus:outline-none w-full text-cyber-neonCyan">
+                            <span class="font-orbitron font-bold bg-cyber-border px-3 py-1 rounded-lg text-white">TLX</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="executeSwap()" class="w-full bg-gradient-to-r from-cyber-neonMagenta to-cyber-neonPurple hover:opacity-90 font-orbitron font-bold py-4 rounded-xl text-white uppercase tracking-wider shadow-lg transition">
+                    Swap Tokenek Most
+                </button>
+            </div>
+
+            <!-- Admin & Dev Wallets -->
+            <div id="wallets" class="glass-card p-6 sm:p-8 rounded-2xl space-y-6">
+                <div class="border-b border-cyber-border pb-4">
+                    <h3 class="font-orbitron font-bold text-xl text-white">Admin & Projekt Tárcák</h3>
+                    <p class="text-xs text-gray-400 mt-1">Hivatalosan igazolt és transzparens fejlesztői címek.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-cyber-bg p-4 rounded-xl border border-cyber-border space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-orbitron text-cyber-neonCyan">1. Admin Wallet</span>
+                            <span class="text-xs text-gray-500">Kincstár / LP Holder</span>
+                        </div>
+                        <div class="font-mono text-sm text-gray-300 break-all">8BoMXwdVRLszBQgT3st2y1M87Mr4peXArSPVa9yzEj2F</div>
+                        <button onclick="copyToClipboard('8BoMXwdVRLszBQgT3st2y1M87Mr4peXArSPVa9yzEj2F', '1. Admin Wallet')" class="text-xs text-cyber-neonCyan hover:underline flex items-center gap-1">
+                            <i class="fa-regular fa-copy"></i> Cím Másolása
                         </button>
                     </div>
 
-                    <!-- Receive Input -->
-                    <div class="bg-slate-900/90 rounded-2xl p-4 border border-slate-700/60 focus-within:border-purple-400 transition-all">
-                        <div class="flex justify-between text-xs font-mono text-slate-400 mb-2">
-                            <span>Kapsz (Becsült)</span>
-                            <span>Egyenleg: <span id="tlx-balance">0.00</span> TLX</span>
+                    <div class="bg-cyber-bg p-4 rounded-xl border border-cyber-border space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-orbitron text-cyber-neonMagenta">2. Admin Wallet</span>
+                            <span class="text-xs text-gray-500">Marketing & Fejlesztés</span>
                         </div>
-                        <div class="flex items-center justify-between gap-3">
-                            <input id="swap-output-tlx" type="text" readonly value="80,645.16" class="w-full bg-transparent text-2xl font-mono font-bold text-cyan-300 focus:outline-none">
-                            <div class="flex items-center space-x-2 bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-700 shrink-0">
-                                <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-cyan-400 to-purple-500 flex items-center justify-center text-[10px] font-bold text-white">TLX</div>
-                                <span class="font-mono font-bold text-sm">TLX</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Swap Details -->
-                    <div class="p-3 bg-slate-950/60 rounded-xl space-y-2 text-xs font-mono border border-slate-800">
-                        <div class="flex justify-between text-slate-400">
-                            <span>Ár hatás (Slippage):</span>
-                            <span class="text-emerald-400">0.5%</span>
-                        </div>
-                        <div class="flex justify-between text-slate-400">
-                            <span>Minimálisan kapott:</span>
-                            <span id="min-received" class="text-slate-200">80,241.93 TLX</span>
-                        </div>
-                        <div class="flex justify-between text-slate-400">
-                            <span>Hálózati díj:</span>
-                            <span class="text-cyan-400">0.000005 SOL</span>
-                        </div>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-cyan-500 via-purple-600 to-cyan-500 bg-size-200 text-white font-mono font-bold text-base shadow-neon-purple hover:shadow-glow-lg transition-all active:scale-[0.98]">
-                        TRANZAKCIÓ INDÍTÁSA (SWAP)
-                    </button>
-                </form>
-            </div>
-
-            <!-- Liquidity & Admin Accounts Breakdown (Right Side - 5 Cols) -->
-            <div class="lg:col-span-5 space-y-5">
-                <!-- Liquidity Status Card -->
-                <div class="glass-panel p-6 rounded-3xl border border-cyan-500/30">
-                    <h4 class="text-lg font-bold font-mono text-cyan-300 flex items-center gap-2 mb-4">
-                        <i class="fa-solid fa-vault text-cyan-400"></i>
-                        <span>Likviditási Alap Összetétel</span>
-                    </h4>
-
-                    <div class="space-y-4 font-mono text-sm">
-                        <div class="p-3.5 bg-slate-900/80 rounded-xl border border-slate-800 flex justify-between items-center">
-                            <div class="flex items-center space-x-3">
-                                <img src="https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png" class="w-7 h-7 rounded-full" alt="SOL" onerror="this.src='https://placehold.co/28x28/9945FF/fff?text=SOL'">
-                                <div>
-                                    <p class="font-bold text-white">Solana Pool</p>
-                                    <p class="text-xs text-slate-400">Kezdeti letét</p>
-                                </div>
-                            </div>
-                            <span class="font-bold text-cyan-400 text-base">0.93 SOL</span>
-                        </div>
-
-                        <div class="p-3.5 bg-slate-900/80 rounded-xl border border-slate-800 flex justify-between items-center">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-cyan-400 to-purple-600 flex items-center justify-center font-bold text-white text-xs">TLX</div>
-                                <div>
-                                    <p class="font-bold text-white">TetraLux Pool</p>
-                                    <p class="text-xs text-slate-400">Kezdeti letét</p>
-                                </div>
-                            </div>
-                            <span class="font-bold text-purple-400 text-base">750,000 TLX</span>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 p-3 bg-cyan-950/30 rounded-xl border border-cyan-500/20 text-xs font-mono text-cyan-300">
-                        <i class="fa-solid fa-shield-halved mr-1 text-cyan-400"></i>
-                        Likviditási pool zárolás alatt a biztonságos kereskedés érdekében.
-                    </div>
-                </div>
-
-                <!-- Verified User / Admin Accounts -->
-                <div class="glass-panel p-6 rounded-3xl border border-purple-500/30">
-                    <h4 class="text-sm font-bold font-mono text-purple-300 uppercase tracking-wider mb-3">
-                        Regisztrált Admin & Fejlesztői Walletek
-                    </h4>
-                    
-                    <div class="space-y-3 font-mono">
-                        <!-- User 1 -->
-                        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
-                            <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
-                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-user-shield text-cyan-400"></i> User / Deployer 1:</span>
-                                <button onclick="copyToClipboard('8BoMXwdVRLszBQgT3st2y1M87Mr4peXArSPVa9yzEj2F', 'User 1 másolva!')" class="text-cyan-400 hover:text-cyan-300">
-                                    <i class="fa-regular fa-copy"></i>
-                                </button>
-                            </div>
-                            <p class="text-xs font-bold text-slate-200 truncate">8BoMXwdVRLszBQgT3st2y1M87Mr4peXArSPVa9yzEj2F</p>
-                        </div>
-
-                        <!-- User 2 -->
-                        <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
-                            <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
-                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-user-gear text-purple-400"></i> User / Deployer 2:</span>
-                                <button onclick="copyToClipboard('6HXGpuDNhHmhu4Y26XLysL52pcPBZtuwYzpU91eC4jZJ', 'User 2 másolva!')" class="text-purple-400 hover:text-purple-300">
-                                    <i class="fa-regular fa-copy"></i>
-                                </button>
-                            </div>
-                            <p class="text-xs font-bold text-slate-200 truncate">6HXGpuDNhHmhu4Y26XLysL52pcPBZtuwYzpU91eC4jZJ</p>
-                        </div>
+                        <div class="font-mono text-sm text-gray-300 break-all">6HXGpuDNhHmhu4Y26XLysL52pcPBZtuwYzpU91eC4jZJ</div>
+                        <button onclick="copyToClipboard('6HXGpuDNhHmhu4Y26XLysL52pcPBZtuwYzpU91eC4jZJ', '2. Admin Wallet')" class="text-xs text-cyber-neonMagenta hover:underline flex items-center gap-1">
+                            <i class="fa-regular fa-copy"></i> Cím Másolása
+                        </button>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Interactive Strategic Roadmap -->
-        <section id="roadmap" class="space-y-8">
-            <div class="text-center max-w-2xl mx-auto space-y-2">
-                <h2 class="text-3xl font-black font-mono text-white tracking-tight uppercase">
-                    TetraLux <span class="text-cyan-400">Roadmap</span>
-                </h2>
-                <p class="text-slate-400 text-sm font-mono">Stratégiai fejlesztési és növekedési ütemterv</p>
+        </div>
+
+        <!-- Roadmap Section -->
+        <div id="roadmap" class="glass-card p-6 sm:p-10 rounded-2xl space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="font-orbitron text-3xl font-bold uppercase tracking-wider text-white">TetraLux <span class="gradient-text">Roadmap</span></h2>
+                <p class="text-gray-400 text-sm">A projekt stratégiai mérföldkövei és fejlesztési ütemterve</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
-                
-                <!-- Phase 1 (Completed) -->
-                <div class="glass-panel p-6 rounded-3xl border-l-4 border-l-emerald-400 relative">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-xs font-mono px-3 py-1 bg-emerald-500/20 text-emerald-400 font-bold rounded-full">
-                            PHASE 1 - COMPLETED
-                        </span>
-                        <i class="fa-solid fa-circle-check text-emerald-400 text-xl"></i>
-                    </div>
-                    <h3 class="text-lg font-bold font-mono text-white mb-2">Indulás & Liquidity Setup</h3>
-                    <ul class="space-y-2 text-xs font-mono text-slate-300">
-                        <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
-                            <span>Solana Token Mint elindítása (100M TLX Supply)</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
-                            <span>Raydium LP létrehozás (0.93 SOL / 750k TLX)</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
-                            <span>Admin tárcák konfigurálása és biztonsági ellenőrzés</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
-                            <span>GitHub Portal repository & weboldal élesítés</span>
-                        </li>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Phase 1 -->
+                <div class="bg-cyber-bg p-6 rounded-xl border border-cyber-neonCyan relative">
+                    <span class="absolute top-4 right-4 text-xs font-bold text-black bg-cyber-neonCyan px-2 py-0.5 rounded">DONE</span>
+                    <div class="text-cyber-neonCyan font-orbitron font-bold text-sm mb-2">PHASE 1</div>
+                    <h4 class="font-bold text-lg text-white mb-2">Genesis & Launch</h4>
+                    <ul class="text-xs text-gray-400 space-y-1.5 list-disc list-inside">
+                        <li>Token Minting Solana láncon</li>
+                        <li>Raydium Liquidity Pool (0.93 SOL / 750K TLX)</li>
+                        <li>GitHub Repository & Portal Indítás</li>
                     </ul>
                 </div>
 
-                <!-- Phase 2 (In Progress) -->
-                <div class="glass-panel p-6 rounded-3xl border-l-4 border-l-cyan-400 relative">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-xs font-mono px-3 py-1 bg-cyan-500/20 text-cyan-300 font-bold rounded-full animate-pulse">
-                            PHASE 2 - IN PROGRESS
-                        </span>
-                        <i class="fa-solid fa-spinner text-cyan-400 text-xl animate-spin"></i>
-                    </div>
-                    <h3 class="text-lg font-bold font-mono text-white mb-2">Közösség & Portál Bővítés</h3>
-                    <ul class="space-y-2 text-xs font-mono text-slate-300">
-                        <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-angles-right text-cyan-400 mt-0.5"></i>
-                            <span>DexScreener & CoinMarketCap közösségi verifikáció</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-angles-right text-cyan-400 mt-0.5"></i>
-                            <span>TLX Staking UI és jutalmazási rendszer integráció</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fa-solid fa-angles-right text-cyan-400 mt-0.5"></i>
-                            <span>Marketing kampány elindítása és közösségi csatornák</span>
-                        </li>
+                <!-- Phase 2 -->
+                <div class="bg-cyber-bg p-6 rounded-xl border border-cyber-neonMagenta relative">
+                    <span class="absolute top-4 right-4 text-xs font-bold text-black bg-cyber-neonMagenta px-2 py-0.5 rounded">IN PROGRESS</span>
+                    <div class="text-cyber-neonMagenta font-orbitron font-bold text-sm mb-2">PHASE 2</div>
+                    <h4 class="font-bold text-lg text-white mb-2">Közösség & DEX-ek</h4>
+                    <ul class="text-xs text-gray-400 space-y-1.5 list-disc list-inside">
+                        <li>CoinMarketCap & CoinGecko Verifikáció</li>
+                        <li>DexScreener & Birdeye Profilok</li>
+                        <li>Marketing kampányok indítása</li>
                     </ul>
                 </div>
 
-                <!-- Phase 3 (Upcoming) -->
-                <div class="glass-panel p-6 rounded-3xl border-l-4 border-l-purple-500 relative">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-xs font-mono px-3 py-1 bg-purple-500/20 text-purple-300 font-bold rounded-full">
-                            PHASE 3 - UPCOMING
-                        </span>
-                        <i class="fa-solid fa-code-fork text-purple-400 text-xl"></i>
-                    </div>
-                    <h3 class="text-lg font-bold font-mono text-white mb-2">Web3 Segédprogramok & DAO</h3>
-                    <ul class="space-y-2 text-xs font-mono text-slate-300">
-                        <li class="flex items-start gap-2">
-                            <i class="fa-regular fa-circle text-purple-400 mt-0.5"></i>
-                            <span>TetraLux dAppök és Governance DAO szavazórendszer</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fa-regular fa-circle text-purple-400 mt-0.5"></i>
-                            <span>Automatizált token burn (égetési) mechanizmusok</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fa-regular fa-circle text-purple-400 mt-0.5"></i>
-                            <span>Liquidity Lock okosszerződés kiterjesztés</span>
-                        </li>
+                <!-- Phase 3 -->
+                <div class="bg-cyber-bg p-6 rounded-xl border border-cyber-border relative">
+                    <span class="absolute top-4 right-4 text-xs font-bold text-gray-400 bg-cyber-card px-2 py-0.5 rounded">UPCOMING</span>
+                    <div class="text-purple-400 font-orbitron font-bold text-sm mb-2">PHASE 3</div>
+                    <h4 class="font-bold text-lg text-white mb-2">Staking & Közösség</h4>
+                    <ul class="text-xs text-gray-400 space-y-1.5 list-disc list-inside">
+                        <li>TLX Staking Portal Fejlesztése</li>
+                        <li>Liquidity Lock megerősítése</li>
+                        <li>DAO Szavazási rendszer bevezetése</li>
                     </ul>
                 </div>
 
-                <!-- Phase 4 (Future Vision) -->
-                <div class="glass-panel p-6 rounded-3xl border-l-4 border-l-slate-600 relative">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-xs font-mono px-3 py-1 bg-slate-800 text-slate-400 font-bold rounded-full">
-                            PHASE 4 - FUTURE
-                        </span>
-                        <i class="fa-solid fa-rocket text-slate-400 text-xl"></i>
-                    </div>
-                    <h3 class="text-lg font-bold font-mono text-white mb-2">Ökoszisztéma Skálázás</h3>
-                    <ul class="space-y-2 text-xs font-mono text-slate-300">
-                        <li class="flex items-start gap-2">
-                            <i class="fa-regular fa-circle text-slate-500 mt-0.5"></i>
-                            <span>Cross-chain híd (Bridge) kutatás és fejlesztés</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fa-regular fa-circle text-slate-500 mt-0.5"></i>
-                            <span>CEX (Centralized Exchange) tőzsdei jegyzések előkészítése</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fa-regular fa-circle text-slate-500 mt-0.5"></i>
-                            <span>Valós idejű Web3 API szolgáltatások a partnereknek</span>
-                        </li>
+                <!-- Phase 4 -->
+                <div class="bg-cyber-bg p-6 rounded-xl border border-cyber-border relative">
+                    <span class="absolute top-4 right-4 text-xs font-bold text-gray-400 bg-cyber-card px-2 py-0.5 rounded">FUTURE</span>
+                    <div class="text-gray-500 font-orbitron font-bold text-sm mb-2">PHASE 4</div>
+                    <h4 class="font-bold text-lg text-white mb-2">Ökoszisztéma</h4>
+                    <ul class="text-xs text-gray-400 space-y-1.5 list-disc list-inside">
+                        <li>CEX Listázások előkészítése</li>
+                        <li>Cross-Chain Híd (Bridge) kutatás</li>
+                        <li>TetraLux DApp Ökoszisztéma Bővítés</li>
                     </ul>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- GitHub Deployment Code Viewer Section -->
-        <section id="github" class="space-y-6">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-cyan-500/20 pb-4">
-                <div>
-                    <h2 class="text-2xl font-bold font-mono text-white flex items-center gap-3">
-                        <i class="fa-brands fa-github text-cyan-400"></i>
-                        <span>GitHub Telepítési Fájlok (Repository Documentation)</span>
-                    </h2>
-                    <p class="text-xs font-mono text-slate-400 mt-1">Másold ki a README.md és az indítási fájlokat a gyors GitHub Pages közzétevéshez.</p>
+        <!-- GitHub Integration Section -->
+        <div id="github" class="glass-card p-6 rounded-2xl space-y-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-brands fa-github text-3xl text-white"></i>
+                    <div>
+                        <h3 class="font-orbitron font-bold text-lg text-white">GitHub Repository Doksz</h3>
+                        <p class="text-xs text-gray-400">README.md forráskód megtekintése</p>
+                    </div>
                 </div>
-
-                <!-- Code Viewer Tabs -->
-                <div class="flex bg-slate-900 p-1 rounded-xl border border-slate-800 font-mono text-xs">
-                    <button id="tab-readme-btn" onclick="switchTab('readme')" class="px-4 py-2 rounded-lg text-cyan-300 bg-cyan-950/80 border border-cyan-400/40 font-bold transition-all">
-                        README.md
-                    </button>
-                    <button id="tab-setup-btn" onclick="switchTab('setup')" class="px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all">
-                        Telepítési Útmutató
-                    </button>
-                </div>
+                <button onclick="copyToClipboard(document.getElementById('readmeCode').innerText, 'README.md Kód')" class="bg-cyber-neonCyan text-black font-bold px-4 py-2 rounded-lg hover:bg-cyan-400 transition text-sm">
+                    <i class="fa-regular fa-copy"></i> README Másolása
+                </button>
             </div>
+            
+            <pre class="bg-cyber-bg p-4 rounded-xl border border-cyber-border text-xs text-green-400 font-mono overflow-x-auto max-h-60" id="readmeCode">
+# TetraLux (TLX) Web3 Portal
 
-            <!-- Code Display Block -->
-            <div class="relative glass-panel rounded-2xl overflow-hidden border border-cyan-500/30">
-                <div class="flex justify-between items-center px-4 py-3 bg-slate-950/80 border-b border-slate-800 font-mono text-xs text-slate-400">
-                    <span id="code-filename" class="text-cyan-400 font-bold flex items-center gap-2">
-                        <i class="fa-regular fa-file-code"></i>
-                        <span>README.md</span>
-                    </span>
-                    <button id="copy-code-btn" onclick="copyCurrentTabCode()" class="px-3 py-1.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 font-bold transition-all flex items-center gap-1.5">
-                        <i class="fa-regular fa-copy"></i>
-                        <span>Fájl Másolása</span>
-                    </button>
-                </div>
+Official GitHub Repository for TetraLux Token on Solana Blockchain.
 
-                <pre class="p-5 font-mono text-xs sm:text-sm text-cyan-100 overflow-x-auto bg-slate-950/90 leading-relaxed max-h-[450px] overflow-y-auto"><code id="code-content"></code></pre>
-            </div>
-        </section>
+## Token Specifications
+- **Mint Address:** `5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3`
+- **Initial Liquidity:** 0.93 SOL / 750,000 TLX
+- **Total Supply:** 100,000,000 TLX
+
+## Admin Wallets
+1. `8BoMXwdVRLszBQgT3st2y1M87Mr4peXArSPVa9yzEj2F`
+2. `6HXGpuDNhHmhu4Y26XLysL52pcPBZtuwYzpU91eC4jZJ`
+            </pre>
+        </div>
 
     </main>
 
     <!-- Footer -->
-    <footer class="relative z-10 border-t border-cyan-500/20 glass-panel py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-            <div class="flex justify-center items-center space-x-2 text-cyan-400 font-mono text-sm font-bold">
-                <i class="fa-solid fa-cube"></i>
-                <span>TetraLux Protocol © 2026</span>
-            </div>
-            <p class="text-xs text-slate-500 font-mono max-w-xl mx-auto">
-                Kriptovaluta befektetések magas kockázattal járnak. Végezd el a saját kutatásodat (DYOR). A TetraLux egy közösségi alapú decentralizált token a Solana blokkláncon.
-            </p>
-        </div>
+    <footer class="border-t border-cyber-border py-8 text-center text-xs text-gray-500">
+        <p>© 2026 TetraLux (TLX) Community. Powered by Solana Blockchain.</p>
     </footer>
 
-    <!-- JavaScript Logic -->
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-cyber-neonCyan text-black font-bold px-6 py-3 rounded-xl shadow-2xl transition transform translate-y-20 opacity-0 duration-300 z-50">
+        Értesítés üzenet
+    </div>
+
+    <!-- JavaScript Interaktivitás -->
     <script>
-        // State
-        let isWalletConnected = false;
-        let activeTab = 'readme';
+        function copyToClipboard(text, label) {
+            navigator.clipboard.writeText(text);
+            showToast(label + " másolva a vágólapra!");
+        }
 
-        // Code templates
-        const readmeContent = `# TetraLux (TLX) - Solana Cyberpunk Portal
-
-Welcome to the official **TetraLux (TLX)** Web3 Portal repository.
-
-## 🚀 Quick Metrics & Overview
-- **Token Name:** TetraLux (TLX)
-- **Token Mint Address:** \`5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3\`
-- **Total Supply:** 100,000,000 TLX
-- **Initial Liquidity:** 0.93 SOL / 750,000 TLX
-
-## 👥 Authorized Deployer / User Wallets
-1. \`8BoMXwdVRLszBQgT3st2y1M87Mr4peXArSPVa9yzEj2F\`
-2. \`6HXGpuDNhHmhu4Y26XLysL52pcPBZtuwYzpU91eC4jZJ\`
-
-## 📌 Features
-- High-tech Cyberpunk Glassmorphism UI
-- Simulated Raydium Swap Calculator
-- Live Metrics & Market Statistics Indicator
-- Strategic 4-Phase Development Roadmap
-
-## 🛠️ GitHub Pages Deployment
-1. Clone this repository:
-   \`\`\`bash
-   git clone https://github.com text/tetralux-portal.git
-   \`\`\`
-2. Push your changes to the \`main\` branch.
-3. Enable GitHub Pages in Repository Settings -> Pages -> Source: \`main\` / \`root\`.`;
-
-        const setupContent = `<!-- TetraLux GitHub Pages Index Launcher -->
-# Telepítési Lépések GitHub-ra:
-
-1. Hozz létre egy új repository-t GitHubon "tetralux-portal" néven.
-2. Másold be az index.html fájlt a gyökérkönyvtárba (root).
-3. Hozz létre egy README.md fájlt a megadott sablon alapján.
-4. Lépj a Repo Settings -> Pages menüpontra.
-5. Válaszd ki a 'Deploy from a branch' opciót, majd válaszd a 'main' branch-et.
-6. A weboldal néhány másodpercen belül elérhetővé válik a https://<github-username>.github.io/tetralux-portal cimen.`;
-
-        // Initialize code viewer on load
-        window.onload = function() {
-            updateCodeView();
-        };
-
-        // Toast Notification Function
         function showToast(message) {
             const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-message');
-            toastMsg.innerText = message;
+            toast.innerText = message;
             toast.classList.remove('translate-y-20', 'opacity-0');
-            
             setTimeout(() => {
                 toast.classList.add('translate-y-20', 'opacity-0');
             }, 3000);
         }
 
-        // Copy Clipboard Helper
-        function copyToClipboard(text, successMsg) {
-            const tempInput = document.createElement('input');
-            tempInput.value = text;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-            showToast(successMsg);
-        }
-
-        // Wallet Connection Toggle
-        function toggleWallet() {
-            const btnText = document.getElementById('wallet-btn-text');
-            if (!isWalletConnected) {
-                isWalletConnected = true;
-                btnText.innerText = '8BoM...j2F (Phantom)';
-                showToast('Phantom tárca sikeresen csatlakoztatva!');
+        function calculateSwap() {
+            const sol = document.getElementById('solInput').value;
+            const rate = 806451.6; // 750,000 TLX / 0.93 SOL
+            if (sol && sol > 0) {
+                document.getElementById('tlxOutput').value = (sol * rate).toLocaleString('en-US', {maximumFractionDigits: 0});
             } else {
-                isWalletConnected = false;
-                btnText.innerText = 'Wallet csatlakoztatása';
-                showToast('Tárca lecsatlakoztatva.');
+                document.getElementById('tlxOutput').value = '';
             }
         }
 
-        // Swap Calculation Logic
-        function calculateSwap() {
-            const inputSol = parseFloat(document.getElementById('swap-input-sol').value) || 0;
-            // Initial pool ratio: 0.93 SOL = 750,000 TLX => 1 SOL ≈ 806,451.61 TLX
-            const rate = 750000 / 0.93;
-            const estimatedTlx = inputSol * rate;
-            const minReceived = estimatedTlx * 0.995; // 0.5% slippage
-
-            document.getElementById('swap-output-tlx').value = estimatedTlx.toLocaleString('en-US', { maximumFractionDigits: 2 });
-            document.getElementById('min-received').innerText = minReceived.toLocaleString('en-US', { maximumFractionDigits: 2 }) + ' TLX';
+        async function connectWallet() {
+            if (window.solana && window.solana.isPhantom) {
+                try {
+                    const response = await window.solana.connect();
+                    const pubKey = response.publicKey.toString();
+                    document.getElementById('walletBtn').innerText = pubKey.substring(0, 4) + "..." + pubKey.substring(pubKey.length - 4);
+                    document.getElementById('solBalance').innerText = "1.25";
+                    showToast("Phantom Wallet sikeresen csatlakoztatva!");
+                } catch (err) {
+                    showToast("Hiba a csatlakozás során.");
+                }
+            } else {
+                showToast("Phantom Wallet nem található! Kérjük telepítse a bővítményt.");
+            }
         }
 
-        function reverseSwap() {
-            showToast('Swap irány megcserélve.');
-        }
-
-        function handleSwap(e) {
-            e.preventDefault();
-            const solVal = document.getElementById('swap-input-sol').value;
-            const tlxVal = document.getElementById('swap-output-tlx').value;
-            
-            if(!isWalletConnected) {
-                showToast('Kérjük, először csatlakoztasd a tárcádat!');
+        function executeSwap() {
+            const sol = document.getElementById('solInput').value;
+            if (!sol || sol <= 0) {
+                showToast("Kérjük adjon meg egy érvényes SOL összeget!");
                 return;
             }
-
-            showToast(`Sikeres Tranzakció: ${solVal} SOL -> ${tlxVal} TLX`);
-        }
-
-        // Tab Switching for GitHub Code Viewer
-        function switchTab(tab) {
-            activeTab = tab;
-            const readmeBtn = document.getElementById('tab-readme-btn');
-            const setupBtn = document.getElementById('tab-setup-btn');
-            const fileName = document.getElementById('code-filename');
-
-            if (tab === 'readme') {
-                readmeBtn.className = 'px-4 py-2 rounded-lg text-cyan-300 bg-cyan-950/80 border border-cyan-400/40 font-bold transition-all';
-                setupBtn.className = 'px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all';
-                fileName.innerHTML = '<i class="fa-regular fa-file-code"></i><span>README.md</span>';
-            } else {
-                setupBtn.className = 'px-4 py-2 rounded-lg text-cyan-300 bg-cyan-950/80 border border-cyan-400/40 font-bold transition-all';
-                readmeBtn.className = 'px-4 py-2 rounded-lg text-slate-400 hover:text-white transition-all';
-                fileName.innerHTML = '<i class="fa-solid fa-terminal"></i><span>SETUP_GUIDE.txt</span>';
-            }
-            updateCodeView();
-        }
-
-        function updateCodeView() {
-            const codeElem = document.getElementById('code-content');
-            codeElem.textContent = activeTab === 'readme' ? readmeContent : setupContent;
-        }
-
-        function copyCurrentTabCode() {
-            const textToCopy = activeTab === 'readme' ? readmeContent : setupContent;
-            copyToClipboard(textToCopy, `${activeTab === 'readme' ? 'README.md' : 'Telepítési útmutató'} másolva!`);
+            showToast("Tranzakció küldése a Solana hálózatra...");
         }
     </script>
 </body>
