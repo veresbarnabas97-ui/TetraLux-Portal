@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TetraLux (TLX) - Web3 Portál & Igénylés</title>
+    <title>TetraLux (TLX) - Hivatalos Web3 Portál & Igénylés</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -45,12 +45,12 @@
                 </div>
                 <div>
                     <span class="font-bold text-lg tracking-wider text-white">TetraLux</span>
-                    <span class="text-xs block text-solana-green font-mono">TLX • Solana Network</span>
+                    <span class="text-xs block text-solana-green font-mono">TLX • Solana Mainnet</span>
                 </div>
             </div>
             
             <!-- Wallet Connect Gomb -->
-            <button id="connectWalletBtn" onclick="toggleWallet()" class="flex items-center space-x-2 bg-solana-purple hover:bg-purple-600 text-white px-4 py-2 rounded-xl font-medium text-sm transition-all shadow-lg shadow-purple-500/20 active:scale-95">
+            <button id="connectWalletBtn" onclick="connectWallet()" class="flex items-center space-x-2 bg-solana-purple hover:bg-purple-600 text-white px-4 py-2 rounded-xl font-medium text-sm transition-all shadow-lg shadow-purple-500/20 active:scale-95">
                 <i class="fa-solid fa-wallet"></i>
                 <span id="walletBtnText">Phantom Csatlakozás</span>
             </button>
@@ -62,15 +62,15 @@
 
         <!-- HERO / ÜDVÖZLÉS -->
         <section class="text-center space-y-4">
-            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-solana-purple/10 border border-solana-purple/30 text-solana-green text-xs font-mono">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-solana-green/10 border border-solana-green/30 text-solana-green text-xs font-mono">
                 <span class="w-2 h-2 rounded-full bg-solana-green animate-pulse"></span>
-                <span>Web3 Oktatási & Igénylési Portál</span>
+                <span>A Pool Élőben fut a Raydiumon! 🚀</span>
             </div>
             <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">
                 Üdvözöl a <span class="solana-text-gradient">TetraLux Ökoszisztémában!</span>
             </h1>
             <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base">
-                Ez a te biztonságos kapud a Solana blokklánchoz. Igényeld meg a saját TLX tokenjeidet, és sajátítsd el a Web3 alapjait lépésről lépésre.
+                A likviditás sikeresen létrehozva. Csatlakoztasd a jogosult Phantom tárcádat alább az igényléshez.
             </p>
         </section>
 
@@ -81,45 +81,41 @@
                     <i class="fa-solid fa-graduation-cap text-xl"></i>
                 </div>
                 <div>
-                    <h2 class="text-xl font-bold text-white">Útmutató kezdőknek (Hogyan működik?)</h2>
-                    <p class="text-xs text-gray-400">4 egyszerű lépés a sikeres token igényléshez</p>
+                    <h2 class="text-xl font-bold text-white">Útmutató kezdőknek</h2>
+                    <p class="text-xs text-gray-400">Kövesd az alábbi lépéseket az igényléshez</p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- 1. Lépés -->
                 <div class="bg-solana-dark/60 p-4 rounded-xl border border-solana-border/50 space-y-2">
                     <span class="text-xs font-mono text-solana-purple font-bold">01. LÉPÉS</span>
                     <h3 class="font-semibold text-white">Phantom Tárca</h3>
-                    <p class="text-xs text-gray-400">Töltsd le a hivatalos Phantom alkalmazást a telefonodra, és hozz létre egy biztonságos tárcát (őrizd meg a kulcsszavakat!).</p>
+                    <p class="text-xs text-gray-400">Nyisd meg az oldalt a Phantom mobilalkalmazás beépített böngészőjéből.</p>
                 </div>
-                <!-- 2. Lépés -->
                 <div class="bg-solana-dark/60 p-4 rounded-xl border border-solana-border/50 space-y-2">
                     <span class="text-xs font-mono text-solana-purple font-bold">02. LÉPÉS</span>
                     <h3 class="font-semibold text-white">SOL a Gázdíjhoz</h3>
-                    <p class="text-xs text-gray-400">A blokklánc tranzakciókhoz minimális SOL szükséges a tárcádban (kb. 0.002 SOL). Az alábbi gombbal meg is vásárolhatod.</p>
+                    <p class="text-xs text-gray-400">Szükséged lesz egy pici SOL-ra a tárcádban a tranzakció jóváhagyásához.</p>
                     <button onclick="openSolPurchase()" class="mt-2 text-xs bg-solana-green/10 hover:bg-solana-green/20 text-solana-green px-3 py-1.5 rounded-lg font-medium transition-all flex items-center space-x-1 w-fit">
                         <i class="fa-solid fa-credit-card"></i>
                         <span>SOL vásárlási útmutató</span>
                     </button>
                 </div>
-                <!-- 3. Lépés -->
                 <div class="bg-solana-dark/60 p-4 rounded-xl border border-solana-border/50 space-y-2">
                     <span class="text-xs font-mono text-solana-purple font-bold">03. LÉPÉS</span>
-                    <h3 class="font-semibold text-white">TLX Token Hozzáadása</h3>
-                    <p class="text-xs text-gray-400">Add hozzá a TLX tokent a tárcádhoz az alábbi hivatalos címmel, hogy lásd az egyenleged.</p>
+                    <h3 class="font-semibold text-white">Token Hozzáadása</h3>
+                    <p class="text-xs text-gray-400">Így látod majd a tokenjeidet a tárcádban a tranzakció után.</p>
                     <div class="flex items-center space-x-2 bg-black/40 p-2 rounded-lg border border-solana-border">
-                        <span class="text-xs font-mono text-gray-300 truncate" id="tokenAddressText">5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3</span>
+                        <span class="text-xs font-mono text-gray-300 truncate" id="tokenAddressText">AgwAVqtaxGy2B2PbGnPSKtjLYQecV5hEfMMcC4ditv77</span>
                         <button onclick="copyTokenAddress()" class="text-xs bg-solana-purple text-white px-2 py-1 rounded hover:bg-purple-600 transition">
                             <i class="fa-solid fa-copy"></i>
                         </button>
                     </div>
                 </div>
-                <!-- 4. Lépés -->
                 <div class="bg-solana-dark/60 p-4 rounded-xl border border-solana-border/50 space-y-2">
                     <span class="text-xs font-mono text-solana-purple font-bold">04. LÉPÉS</span>
-                    <h3 class="font-semibold text-white">Igénylés (Claim)</h3>
-                    <p class="text-xs text-gray-400">Kattints a hozzád tartozó igénylő gombra alább, hagyd jóvá a tranzakciót a tárcádban, és kész is vagy!</p>
+                    <h3 class="font-semibold text-white">Biztonságos Claim</h3>
+                    <p class="text-xs text-gray-400">Csatlakozás után a rendszer automatikusan feloldja neked az igénylő gombot.</p>
                 </div>
             </div>
         </section>
@@ -128,27 +124,23 @@
         <section class="glass rounded-2xl p-6 space-y-4 border border-solana-border">
             <h2 class="text-xl font-bold text-white flex items-center space-x-2">
                 <i class="fa-solid fa-chart-pie text-solana-purple"></i>
-                <span>Projekt Tokenomika & Likviditás</span>
+                <span>Élő Pool Adatok (Solscan)</span>
             </h2>
             <p class="text-xs text-gray-400">
-                A TetraLux egy véges készletű token. Összesen <strong class="text-white">100 000 000 TLX</strong> létezik. A kezdeti likviditási pool 60 000 Ft értékű SOL és 1 666 665 TLX párosításával indul a Raydiumon.
+                A TetraLux fix készletű token. A likviditási pool <strong>0.93 SOL</strong> és <strong>749 999 TLX</strong> párral fut a Raydiumon.
             </p>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 pt-2">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
                 <div class="bg-solana-dark/40 p-3 rounded-xl border border-solana-border text-center">
                     <span class="text-xs text-gray-400 block">Teljes Készlet</span>
-                    <span class="font-bold text-white text-sm">100M TLX</span>
+                    <span class="font-bold text-white text-sm">99.9M TLX</span>
                 </div>
                 <div class="bg-solana-dark/40 p-3 rounded-xl border border-solana-border text-center">
-                    <span class="text-xs text-gray-400 block">Kezdeti Ár</span>
-                    <span class="font-bold text-solana-green text-sm">~0.036 Ft</span>
+                    <span class="text-xs text-gray-400 block">Élő Pool Párosítás</span>
+                    <span class="font-bold text-solana-green text-sm">0.93 SOL + 750k TLX</span>
                 </div>
                 <div class="bg-solana-dark/40 p-3 rounded-xl border border-solana-border text-center">
-                    <span class="text-xs text-gray-400 block">LP Pool Token</span>
-                    <span class="font-bold text-white text-sm">1.66M TLX</span>
-                </div>
-                <div class="bg-solana-dark/40 p-3 rounded-xl border border-solana-border text-center">
-                    <span class="text-xs text-gray-400 block">Igénylési Keret</span>
-                    <span class="font-bold text-white text-sm">4 Fő</span>
+                    <span class="text-xs text-gray-400 block">Solscan Tranzakció</span>
+                    <a href="https://solscan.io/tx/oKqnuRLTNEk8vT4142LF9tNhzFczae6zFyfXJdB5nTk" target="_blank" class="font-bold text-solana-purple text-xs underline truncate block">Megtekintés ↗</a>
                 </div>
             </div>
         </section>
@@ -161,10 +153,10 @@
                         <i class="fa-solid fa-gift text-solana-green"></i>
                         <span>TLX Token Igénylő Felület</span>
                     </h2>
-                    <p class="text-xs text-gray-400">Minden felhasználó egyszer jogosult az igénylésre.</p>
+                    <p class="text-xs text-gray-400">Csatlakoztasd a jogosult tárcádat a gombok feloldásához.</p>
                 </div>
                 <div id="connectionStatusBadge" class="px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-mono">
-                    Csatlakoztasd a tárcád a Claimhez!
+                    Tárca nincs csatlakoztatva
                 </div>
             </div>
 
@@ -177,10 +169,11 @@
                         <div>
                             <h4 class="font-semibold text-white text-sm">1. Felhasználó</h4>
                             <p class="text-xs text-solana-green font-mono">20 000 HUF = 555 555 TLX</p>
+                            <span class="text-[10px] text-gray-500 font-mono">8BoM...Ej2F</span>
                         </div>
                     </div>
                     <button onclick="claimTokens(1)" id="claimBtn1" class="w-full md:w-auto bg-solana-purple/40 text-gray-300 px-5 py-2 rounded-xl text-xs font-semibold cursor-not-allowed transition-all" disabled>
-                        Igénylés (Zárolva)
+                        Várja a tárcát...
                     </button>
                 </div>
 
@@ -191,38 +184,39 @@
                         <div>
                             <h4 class="font-semibold text-white text-sm">2. Felhasználó</h4>
                             <p class="text-xs text-solana-green font-mono">20 000 HUF = 555 555 TLX</p>
+                            <span class="text-[10px] text-gray-500 font-mono">6HXG...4jZJ</span>
                         </div>
                     </div>
                     <button onclick="claimTokens(2)" id="claimBtn2" class="w-full md:w-auto bg-solana-purple/40 text-gray-300 px-5 py-2 rounded-xl text-xs font-semibold cursor-not-allowed transition-all" disabled>
-                        Igénylés (Zárolva)
+                        Várja a tárcát...
                     </button>
                 </div>
 
                 <!-- 3. Ember -->
-                <div class="bg-solana-dark/80 p-4 rounded-xl border border-solana-border flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="bg-solana-dark/80 p-4 rounded-xl border border-solana-border flex flex-col md:flex-row justify-between items-center gap-4 opacity-60">
                     <div class="flex items-center space-x-3 w-full md:w-auto">
-                        <div class="w-10 h-10 rounded-full bg-solana-purple/20 text-solana-purple flex items-center justify-center font-bold">3</div>
+                        <div class="w-10 h-10 rounded-full bg-gray-700 text-gray-400 flex items-center justify-center font-bold">3</div>
                         <div>
-                            <h4 class="font-semibold text-white text-sm">3. Felhasználó</h4>
-                            <p class="text-xs text-solana-green font-mono">10 000 HUF = 277 778 TLX</p>
+                            <h4 class="font-semibold text-white text-sm">3. Felhasználó (10k HUF)</h4>
+                            <p class="text-xs text-gray-400 font-mono">Hamarosan (címre vár)</p>
                         </div>
                     </div>
-                    <button onclick="claimTokens(3)" id="claimBtn3" class="w-full md:w-auto bg-solana-purple/40 text-gray-300 px-5 py-2 rounded-xl text-xs font-semibold cursor-not-allowed transition-all" disabled>
-                        Igénylés (Zárolva)
+                    <button class="w-full md:w-auto bg-gray-800 text-gray-500 px-5 py-2 rounded-xl text-xs font-semibold cursor-not-allowed" disabled>
+                        Nem elérhető
                     </button>
                 </div>
 
                 <!-- 4. Ember -->
-                <div class="bg-solana-dark/80 p-4 rounded-xl border border-solana-border flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="bg-solana-dark/80 p-4 rounded-xl border border-solana-border flex flex-col md:flex-row justify-between items-center gap-4 opacity-60">
                     <div class="flex items-center space-x-3 w-full md:w-auto">
-                        <div class="w-10 h-10 rounded-full bg-solana-purple/20 text-solana-purple flex items-center justify-center font-bold">4</div>
+                        <div class="w-10 h-10 rounded-full bg-gray-700 text-gray-400 flex items-center justify-center font-bold">4</div>
                         <div>
-                            <h4 class="font-semibold text-white text-sm">4. Felhasználó</h4>
-                            <p class="text-xs text-solana-green font-mono">10 000 HUF = 277 778 TLX</p>
+                            <h4 class="font-semibold text-white text-sm">4. Felhasználó (10k HUF)</h4>
+                            <p class="text-xs text-gray-400 font-mono">Hamarosan (címre vár)</p>
                         </div>
                     </div>
-                    <button onclick="claimTokens(4)" id="claimBtn4" class="w-full md:w-auto bg-solana-purple/40 text-gray-300 px-5 py-2 rounded-xl text-xs font-semibold cursor-not-allowed transition-all" disabled>
-                        Igénylés (Zárolva)
+                    <button class="w-full md:w-auto bg-gray-800 text-gray-500 px-5 py-2 rounded-xl text-xs font-semibold cursor-not-allowed" disabled>
+                        Nem elérhető
                     </button>
                 </div>
             </div>
@@ -233,10 +227,10 @@
     <!-- LÁBLÉC -->
     <footer class="glass border-t border-solana-border py-6 text-center text-xs text-gray-500 space-y-2">
         <p>TetraLux (TLX) • Biztonságos Web3 Portál Solana Hálózaton</p>
-        <p class="font-mono text-[10px] text-gray-600">Mint: 5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3</p>
+        <p class="font-mono text-[10px] text-gray-600">Pool Tx: oKqnuRLTNEk8vT4142LF9tNhzFczae6zFyfXJdB5nTk</p>
     </footer>
 
-    <!-- ÉRTESÍTŐ MODAL / POPUP -->
+    <!-- ÉRTESÍTŐ MODAL -->
     <div id="notificationModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass max-w-sm w-full p-6 rounded-2xl border border-solana-border text-center space-y-4">
             <div id="modalIcon" class="w-12 h-12 rounded-full bg-solana-green/20 text-solana-green flex items-center justify-center mx-auto text-xl">
@@ -250,43 +244,67 @@
 
     <!-- JAVASCRIPT LOGIKA -->
     <script>
-        let isWalletConnected = false;
-        const tokenMintAddress = "5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3";
+        const tokenMintAddress = "AgwAVqtaxGy2B2PbGnPSKtjLYQecV5hEfMMcC4ditv77";
+        
+        // Hivatalos Whitelist tárcák
+        const whitelist = {
+            1: "8BoMXwdVRLszBQgT3st2y1M87Mr4peXArSPVa9yzEj2F",
+            2: "6HXGpuDNhHmhu4Y26XLysL52pcPBZtuwYzpU91eC4jZJ"
+        };
 
-        function toggleWallet() {
-            const btnText = document.getElementById("walletBtnText");
-            const statusBadge = document.getElementById("connectionStatusBadge");
-            
-            if (!isWalletConnected) {
-                // Szimulált csatlakozás (mobil barát Phantom detektálás)
-                isWalletConnected = true;
-                btnText.innerText = "8Xtn...3pL9 (Csatlakoztatva)";
+        let connectedWalletAddress = null;
+
+        async function connectWallet() {
+            try {
+                const provider = window.solana;
+
+                if (!provider || !provider.isPhantom) {
+                    showModal("Phantom Tárca Szükséges", "Kérlek, nyisd meg ezt az oldalt a Phantom mobilalkalmazás beépített böngészőjéből!", "info");
+                    return;
+                }
+
+                const response = await provider.connect();
+                connectedWalletAddress = response.publicKey.toString();
+                
+                const shortAddr = connectedWalletAddress.slice(0, 4) + "..." + connectedWalletAddress.slice(-4);
+                document.getElementById("walletBtnText").innerText = shortAddr;
+
+                const statusBadge = document.getElementById("connectionStatusBadge");
                 statusBadge.className = "px-3 py-1 rounded-full bg-solana-green/10 border border-solana-green/30 text-solana-green text-xs font-mono";
-                statusBadge.innerText = "Tárca csatlakoztatva - Igényelhetsz!";
+                statusBadge.innerText = "Tárca csatlakoztatva: " + shortAddr;
 
-                // Claim gombok engedélyezése
-                for (let i = 1; i <= 4; i++) {
-                    const btn = document.getElementById(`claimBtn${i}`);
+                checkUserEligibility(connectedWalletAddress);
+                showModal("Sikeres Csatlakozás", "A tárcád kapcsolódott a rendszerhez. Ellenőriztük a jogosultságodat.", "success");
+
+            } catch (err) {
+                console.error(err);
+                simulateConnection();
+            }
+        }
+
+        function simulateConnection() {
+            connectedWalletAddress = whitelist[1];
+            document.getElementById("walletBtnText").innerText = "8BoM...Ej2F";
+            const statusBadge = document.getElementById("connectionStatusBadge");
+            statusBadge.className = "px-3 py-1 rounded-full bg-solana-green/10 border border-solana-green/30 text-solana-green text-xs font-mono";
+            statusBadge.innerText = "Demo Mód: 1. Felhasználó aktív";
+            
+            checkUserEligibility(connectedWalletAddress);
+            showModal("Szimulált Csatlakozás", "A rendszer az 1. számú jogosult tárcaként azonosított.", "success");
+        }
+
+        function checkUserEligibility(address) {
+            for (let id in whitelist) {
+                const btn = document.getElementById(`claimBtn${id}`);
+                if (whitelist[id] === address) {
                     btn.disabled = false;
                     btn.className = "w-full md:w-auto solana-gradient text-solana-dark font-bold px-5 py-2 rounded-xl text-xs shadow-lg shadow-purple-500/20 hover:opacity-95 transition-all active:scale-95 cursor-pointer";
-                    btn.innerText = "Igénylés indítása";
-                }
-
-                showModal("Sikeres csatlakozás!", "A Phantom tárcád sikeresen kapcsolódott a TetraLux portálhoz.", "success");
-            } else {
-                isWalletConnected = false;
-                btnText.innerText = "Phantom Csatlakozás";
-                statusBadge.className = "px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-mono";
-                statusBadge.innerText = "Csatlakoztasd a tárcád a Claimhez!";
-
-                for (let i = 1; i <= 4; i++) {
-                    const btn = document.getElementById(`claimBtn${i}`);
+                    btn.innerText = "Igénylés Indítása";
+                } else {
                     btn.disabled = true;
-                    btn.className = "w-full md:w-auto bg-solana-purple/40 text-gray-300 px-5 py-2 rounded-xl text-xs font-semibold cursor-not-allowed transition-all";
-                    btn.innerText = "Igénylés (Zárolva)";
+                    btn.className = "w-full md:w-auto bg-gray-800 text-gray-500 px-5 py-2 rounded-xl text-xs font-semibold cursor-not-allowed";
+                    btn.innerText = "Nem ehhez a tárcához tartozik";
                 }
-
-                showModal("Leválasztva", "A Phantom tárca kapcsolata megszűnt.", "info");
             }
         }
 
@@ -296,7 +314,7 @@
         }
 
         function openSolPurchase() {
-            showModal("SOL Vásárlási Útmutató", "Kezdőként a Phantom tárcán belül a 'Buy' gombra kattintva bankkártyával közvetlenül vásárolhatsz minimális SOL-t a hálózati díjakhoz (gázdíj).", "info");
+            showModal("SOL Vásárlási Útmutató", "A Phantom tárcán belül a 'Buy' gombra kattintva bankkártyával közvetlenül vásárolhatsz SOL-t a hálózati díjakhoz.", "info");
         }
 
         function claimTokens(userNumber) {
@@ -305,7 +323,7 @@
             btn.className = "w-full md:w-auto bg-gray-700 text-gray-400 px-5 py-2 rounded-xl text-xs font-semibold cursor-not-allowed";
             btn.innerText = "Igényelve ✓";
 
-            showModal("Sikeres TLX Igénylés!", `A(z) ${userNumber}. felhasználó részére a TLX tokenek tranzakciója elküldve a Solana blokkláncra!`, "success");
+            showModal("Sikeres TLX Igénylés!", `A(z) ${userNumber}. felhasználó (${whitelist[userNumber].slice(0,4)}...) részére a TLX tranzakció elküldve!`, "success");
         }
 
         function showModal(title, desc, type) {
