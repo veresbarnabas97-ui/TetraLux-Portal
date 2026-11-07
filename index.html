@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TetraLux Token (TLX) | Official Portal</title>
+    <title>TetraLux Token (TLX) | Official Web3 Portal</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- FontAwesome icons -->
@@ -33,14 +33,17 @@
                 </span>
             </div>
             
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
                 <a href="#about" class="hover:text-cyan-400 transition-colors">Rólunk</a>
-                <a href="#pools" class="hover:text-cyan-400 transition-colors">Likviditás</a>
-                <a href="#calculator" class="hover:text-cyan-400 transition-colors">Ár kalkulátor</a>
-                <a href="#roadmap" class="hover:text-cyan-400 transition-colors">Útvonalterv</a>
+                <a href="#swap" class="hover:text-cyan-400 transition-colors">Web3 Swap</a>
+                <a href="#pools" class="hover:text-cyan-400 transition-colors">Likviditás & Stake</a>
+                <a href="#roadmap" class="hover:text-cyan-400 transition-colors">Útvonalterv & Burn</a>
             </nav>
 
-            <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-3">
+                <a href="https://t.me/TetraLux00" target="_blank" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-cyan-400 hover:bg-slate-800 transition-colors" title="Telegram">
+                    <i class="fa-brands fa-telegram text-lg"></i>
+                </a>
                 <a href="https://raydium.io/swap/?output=5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3" target="_blank" class="hidden sm:inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-sm shadow-lg shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5">
                     <i class="fa-solid fa-right-left"></i>
                     <span>Swap Raydiumon</span>
@@ -50,12 +53,12 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative pt-20 pb-32 overflow-hidden">
+    <section id="about" class="relative pt-20 pb-32 overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/20 via-slate-950/0 to-slate-950/0 pointer-events-none"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-slate-900/80 border border-slate-800 text-cyan-400 text-xs font-semibold uppercase tracking-widest mb-8 shadow-inner">
                 <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                <span>Solana Hálózaton Fut</span>
+                <span>Solana Hálózaton Fut • Biztonságos & Zárolt LP</span>
             </div>
 
             <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight max-w-4xl mx-auto mb-6 leading-tight">
@@ -63,12 +66,15 @@
             </h1>
 
             <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10">
-                Gyors, biztonságos és átlátható token a Solana blokkláncon. Kereskedj a Raydiumon alacsony díjak mellett.
+                Gyors, biztonságos, közösségvezérelt token a Solana blokkláncon. Deselectálva a mint funkció, maximális átláthatóság és 2027-es deflációs ütemterv.
             </p>
 
             <!-- Contract Address Box -->
             <div class="max-w-xl mx-auto bg-slate-900/90 border border-slate-800 p-4 rounded-2xl shadow-xl backdrop-blur-md mb-10">
-                <div class="text-xs text-slate-400 font-semibold mb-2 uppercase tracking-wider text-left">Smart Contract Cím</div>
+                <div class="text-xs text-slate-400 font-semibold mb-2 uppercase tracking-wider text-left flex justify-between items-center">
+                    <span>Smart Contract Cím (Mint kikapcsolva)</span>
+                    <span class="text-emerald-400"><i class="fa-solid fa-shield-check"></i> Verified</span>
+                </div>
                 <div class="flex items-center justify-between bg-slate-950 px-4 py-3 rounded-xl border border-slate-800/80">
                     <span id="contractAddress" class="text-xs sm:text-sm font-mono text-cyan-300 truncate mr-2">5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3</span>
                     <button onclick="copyContract()" class="px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 text-xs font-bold transition-all flex items-center space-x-1 shrink-0">
@@ -80,27 +86,73 @@
 
             <!-- Quick Links / Badges -->
             <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://t.me/TetraLux00" target="_blank" class="px-5 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 font-semibold text-sm flex items-center space-x-2 transition-all text-cyan-400">
+                    <i class="fa-brands fa-telegram text-lg"></i>
+                    <span>Telegram Közösség</span>
+                </a>
                 <a href="https://coinmarketcap.com" target="_blank" class="px-5 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 font-semibold text-sm flex items-center space-x-2 transition-all">
                     <i class="fa-solid fa-chart-line text-cyan-400"></i>
                     <span>CoinMarketCap</span>
                 </a>
-                <a href="https://raydium.io/swap/?output=5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3" target="_blank" class="px-5 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 font-semibold text-sm flex items-center space-x-2 transition-all">
-                    <i class="fa-solid fa-water text-purple-400"></i>
-                    <span>Raydium Pool</span>
+                <a href="https://stakepoint.app/locks/cmw62o5iy0000l608kgfr77xs?t=1794037750" target="_blank" class="px-5 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 font-semibold text-sm flex items-center space-x-2 transition-all text-emerald-400">
+                    <i class="fa-solid fa-lock"></i>
+                    <span>StakePoint LP Zárolás</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Pools & Liquidity Section -->
-    <section id="pools" class="py-20 bg-slate-900/30 border-t border-slate-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="text-3xl font-bold tracking-tight mb-4">DEX Likviditási Poolok</h2>
-                <p class="text-slate-400 text-sm sm:text-base">A TetraLux Token (TLX) likviditása jelenleg aktívan biztosított a Raydium platformon.</p>
+    <!-- Web3 Swap & Calculator Section -->
+    <section id="swap" class="py-20 bg-slate-900/20 border-t border-slate-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold tracking-tight mb-3">Web3 Swap & Ár Kalkulátor</h2>
+                <p class="text-slate-400 text-sm sm:text-base">Számold ki mennyi TLX-et kapsz USDC vagy Solana ellenében, majd indítsd el a kereskedést a Raydiumon.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl glow-cyan">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Fizető eszköz kiválasztása</label>
+                        <select id="currencySelect" onchange="updateSwap()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 text-white font-semibold focus:outline-none focus:border-cyan-500 mb-6">
+                            <option value="usdc">USDC (USD Coin)</option>
+                            <option value="sol">SOL (Solana)</option>
+                        </select>
+
+                        <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2" id="inputLabel">Mennyiség (USDC)</label>
+                        <input type="number" id="tokenInput" value="20" min="0.1" step="0.1" oninput="updateSwap()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white font-bold focus:outline-none focus:border-cyan-500">
+                    </div>
+
+                    <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs text-slate-400 uppercase tracking-wider mb-1">Várható TLX Mennyiség</div>
+                            <div id="tlxResult" class="text-3xl font-extrabold text-cyan-400 mb-4">150,000 TLX</div>
+                            <div class="text-xs text-slate-500 space-y-1">
+                                <div>• Becsült ár: <span id="estimatedPrice" class="text-slate-300">$0.00133 / TLX</span></div>
+                                <div>• Hálózat: Solana (Raydium DEX)</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8">
+                            <a href="https://raydium.io/swap/?output=5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3" target="_blank" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-slate-950 font-extrabold text-center block shadow-lg shadow-cyan-500/20 transition-all">
+                                <i class="fa-solid fa-right-left mr-2"></i> Vásárlás Raydiumon
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pools & Liquidity Section -->
+    <section id="pools" class="py-20 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold tracking-tight mb-4">DEX Likviditási Poolok & Biztonság</h2>
+                <p class="text-slate-400 text-sm sm:text-base">A TetraLux likviditási pooljai teljesen átláthatóak és on-chain zárolással védettek a maximális befektetői biztonság érdekében.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
                 <!-- SOL Pool Card -->
                 <div class="bg-slate-900/80 border border-slate-800/80 rounded-3xl p-6 sm:p-8 relative overflow-hidden glow-effect">
                     <div class="flex items-center justify-between mb-6">
@@ -111,7 +163,7 @@
                                 <span class="text-xs text-slate-400">Raydium Liquidity</span>
                             </div>
                         </div>
-                        <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold">Aktív</span>
+                        <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold">Aktív & Zárolt</span>
                     </div>
                     <div class="space-y-4 text-sm">
                         <div class="flex justify-between py-2 border-b border-slate-800/60">
@@ -123,8 +175,8 @@
                             <span class="font-semibold text-slate-200">749,999 TLX</span>
                         </div>
                         <div class="flex justify-between py-2">
-                            <span class="text-slate-400">Becsült Ár</span>
-                            <span class="font-semibold text-cyan-400">~ $0.000116 USD</span>
+                            <span class="text-slate-400">Pool Státusz</span>
+                            <span class="font-semibold text-emerald-400">StakePoint Protected</span>
                         </div>
                     </div>
                 </div>
@@ -139,7 +191,7 @@
                                 <span class="text-xs text-slate-400">Raydium Liquidity</span>
                             </div>
                         </div>
-                        <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold">Aktív</span>
+                        <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold">Aktív & Zárolt</span>
                     </div>
                     <div class="space-y-4 text-sm">
                         <div class="flex justify-between py-2 border-b border-slate-800/60">
@@ -151,38 +203,73 @@
                             <span class="font-semibold text-slate-200">150,000 TLX</span>
                         </div>
                         <div class="flex justify-between py-2">
-                            <span class="text-slate-400">Becsült Ár</span>
-                            <span class="font-semibold text-cyan-400">~ $0.000133 USD</span>
+                            <span class="text-slate-400">Pool Státusz</span>
+                            <span class="font-semibold text-emerald-400">StakePoint Protected</span>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Liquidity Actions Box -->
+            <div class="max-w-xl mx-auto bg-slate-900 border border-slate-800 rounded-2xl p-6 text-center">
+                <h3 class="font-bold text-lg mb-2">Szeretnél likviditást hozzáadni vagy ellenőrizni a zárolást?</h3>
+                <p class="text-sm text-slate-400 mb-6">Bárki hozzáadhat likviditást a Raydiumon, az LP tokenek pedig biztonságosan le vannak kötve.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://stakepoint.app/locks/cmw62o5iy0000l608kgfr77xs?t=1794037750" target="_blank" class="px-5 py-2.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 text-sm font-bold border border-emerald-500/30 transition-all">
+                        <i class="fa-solid fa-lock mr-2"></i> Zárolás megtekintése
+                    </a>
+                    <a href="https://raydium.io/liquidity/" target="_blank" class="px-5 py-2.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 text-sm font-bold border border-cyan-500/30 transition-all">
+                        <i class="fa-solid fa-plus mr-2"></i> Likviditás hozzáadása
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Calculator Section -->
-    <section id="calculator" class="py-20 border-t border-slate-900">
-        <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold tracking-tight mb-2">TLX Kalkulátor</h2>
-                <p class="text-slate-400 text-sm">Számold ki gyorsan a Token mennyiséget USDC alapon.</p>
+    <!-- Roadmap & Burn Event Section -->
+    <section id="roadmap" class="py-20 bg-slate-900/30 border-t border-slate-900">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold tracking-tight mb-4">Útvonalterv & 2027 Burn Stratégia</h2>
+                <p class="text-slate-400 text-sm sm:text-base">A TetraLux hosszú távú víziója és mérföldkövei a fenntartható növekedésért.</p>
             </div>
 
-            <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
-                <div class="mb-6">
-                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">USDC Összeg</label>
-                    <input type="number" id="usdcInput" value="20" min="1" oninput="calculateTLX()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white font-bold focus:outline-none focus:border-cyan-500 transition-colors">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Q1-Q2 2026 -->
+                <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 sm:p-8">
+                    <div class="text-cyan-400 font-extrabold text-sm mb-2">1. FÁZIS (Jelenlegi)</div>
+                    <h3 class="text-xl font-bold mb-4">Alapozás & Indítás</h3>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="flex items-start"><i class="fa-solid fa-check text-emerald-400 mt-1 mr-2"></i> Smart contract létrehozás & Mint kikapcsolás</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-emerald-400 mt-1 mr-2"></i> Raydium SOL/TLX & USDC/TLX poolok</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-emerald-400 mt-1 mr-2"></i> StakePoint LP zárolás aktiválás</li>
+                        <li class="flex items-start"><i class="fa-solid fa-check text-emerald-400 mt-1 mr-2"></i> Web3 Portál & Telegram közösség</li>
+                    </ul>
                 </div>
 
-                <div class="flex justify-center my-4 text-cyan-400">
-                    <i class="fa-solid fa-arrow-down-long text-xl animate-bounce"></i>
+                <!-- Q3-Q4 2026 -->
+                <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 sm:p-8">
+                    <div class="text-purple-400 font-extrabold text-sm mb-2">2. FÁZIS</div>
+                    <h3 class="text-xl font-bold mb-4">Növekedés & Listázások</h3>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="flex items-start"><i class="fa-solid fa-arrow-right text-cyan-400 mt-1 mr-2"></i> CoinMarketCap & CoinGecko integráció</li>
+                        <li class="flex items-start"><i class="fa-solid fa-arrow-right text-cyan-400 mt-1 mr-2"></i> Aktív marketing kampányok & Partnerkapcsolatok</li>
+                        <li class="flex items-start"><i class="fa-solid fa-arrow-right text-cyan-400 mt-1 mr-2"></i> Közösségi eventek és holder jutalmak</li>
+                        <li class="flex items-start"><i class="fa-solid fa-arrow-right text-cyan-400 mt-1 mr-2"></i> Likviditás bővítési program</li>
+                    </ul>
                 </div>
 
-                <div>
-                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Kapott TLX Mennyiség</label>
-                    <div id="tlxOutput" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-cyan-400 font-extrabold text-lg">
-                        150,000 TLX
-                    </div>
+                <!-- 2027 Burn Event -->
+                <div class="bg-gradient-to-br from-purple-950/60 to-slate-900 border border-purple-500/30 rounded-3xl p-6 sm:p-8 relative overflow-hidden glow-effect">
+                    <div class="absolute top-4 right-4 bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-xs font-bold">2027 Cél</div>
+                    <div class="text-pink-400 font-extrabold text-sm mb-2">3. FÁZIS (Deflációs csúcspont)</div>
+                    <h3 class="text-xl font-bold mb-4">Nagyszabású Burn Event</h3>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="flex items-start"><i class="fa-solid fa-fire text-pink-400 mt-1 mr-2"></i> Ütemezett token égetés (Burn Event)</li>
+                        <li class="flex items-start"><i class="fa-solid fa-fire text-pink-400 mt-1 mr-2"></i> Készlet csökkentés az értékállóságért</li>
+                        <li class="flex items-start"><i class="fa-solid fa-fire text-pink-400 mt-1 mr-2"></i> Ökoszisztéma bővítés & Új utilitások</li>
+                        <li class="flex items-start"><i class="fa-solid fa-fire text-pink-400 mt-1 mr-2"></i> Hosszútávú fenntartható Web3 modell</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -190,8 +277,13 @@
 
     <!-- Footer -->
     <footer class="bg-slate-950 border-t border-slate-900 py-12 text-center text-sm text-slate-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p>&copy; 2026 TetraLux Token (TLX). Minden jog fenntartva.</p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+            <div class="flex justify-center space-x-6 text-slate-400">
+                <a href="https://t.me/TetraLux00" target="_blank" class="hover:text-cyan-400 transition-colors"><i class="fa-brands fa-telegram text-xl"></i> Telegram</a>
+                <a href="https://coinmarketcap.com" target="_blank" class="hover:text-cyan-400 transition-colors"><i class="fa-solid fa-chart-line text-xl"></i> CoinMarketCap</a>
+                <a href="https://stakepoint.app/locks/cmw62o5iy0000l608kgfr77xs?t=1794037750" target="_blank" class="hover:text-cyan-400 transition-colors"><i class="fa-solid fa-lock text-xl"></i> StakePoint LP</a>
+            </div>
+            <p>&copy; 2026 TetraLux Token (TLX). Minden jog fenntartva. Solana Web3 Ecosystem.</p>
         </div>
     </footer>
 
@@ -213,11 +305,27 @@
             }, 2000);
         }
 
-        function calculateTLX() {
-            const usdc = parseFloat(document.getElementById("usdcInput").value) || 0;
-            // Pool arány: 20 USDC = 150,000 TLX -> 1 USDC = 7,500 TLX
-            const tlx = usdc * 7500;
-            document.getElementById("tlxOutput").innerText = tlx.toLocaleString() + " TLX";
+        function updateSwap() {
+            const currency = document.getElementById("currencySelect").value;
+            const inputVal = parseFloat(document.getElementById("tokenInput").value) || 0;
+            const inputLabel = document.getElementById("inputLabel");
+            const tlxResult = document.getElementById("tlxResult");
+            const estimatedPrice = document.getElementById("estimatedPrice");
+
+            let tlx = 0;
+            if (currency === 'usdc') {
+                inputLabel.innerText = "Mennyiség (USDC)";
+                // 20 USDC = 150,000 TLX -> 1 USDC = 7,500 TLX
+                tlx = inputVal * 7500;
+                estimatedPrice.innerText = "~$0.00133 / TLX";
+            } else {
+                inputLabel.innerText = "Mennyiség (SOL)";
+                // Tegyük fel 1 SOL = ~150 USDC átszámítással
+                tlx = inputVal * 150 * 7500;
+                estimatedPrice.innerText = "~$0.00133 / TLX (SOL alapú)";
+            }
+
+            tlxResult.innerText = tlx.toLocaleString() + " TLX";
         }
     </script>
 </body>
