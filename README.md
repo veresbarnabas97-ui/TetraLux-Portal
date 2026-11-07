@@ -1,41 +1,25 @@
-# 🌌 TetraLux (TLX) Web3 Portal
+# TetraLux Portal (TLX)
 
-![TetraLux Banner](https://img.shields.bg/badge/Solana-SPL_Token-00f3ff?style=for-the-badge&logo=solana)
-![Network](https://img.shields.io/badge/Network-Solana_Mainnet-ff007f?style=for-the-badge)
-![Status](https://img.shields.io/badge/Liquidity-Live-00ff66?style=for-the-badge)
+A **TetraLux Token (TLX)** hivatalos weboldala és információs portálja a Solana blokkláncon.
 
-A **TetraLux (TLX)** egy decentralizált, nagy teljesítményű token a Solana blokkláncon. Ez a repozitórium tartalmazza a hivatalos weboldal, az interaktív portal, valamint a közösségi mérföldkövek forráskódját.
+## 📋 Smart Contract Információk
 
----
-
-## 📌 Token Specifikációk
-
-| Paraméter | Érték |
-| :--- | :--- |
-| **Token Neve** | TetraLux |
-| **Ticker** | **TLX** |
-| **Token Mint Address** | `5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3` |
-| **Kezdeti Likviditás (Pool)** | **0.93 SOL / 750,000 TLX** |
-| **Teljes Készlet (Max Supply)** | 100,000,000 TLX |
-| **Market Cap (Induló)** | ~$11,550 USD |
+* **Token Név:** TetraLux Token
+* **Ticker:** TLX
+* **Hálózat:** Solana (SOL)
+* **Contract Address:** `5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3`
 
 ---
 
-## 👛 Hivatalos Admin Walletek
+## 💧 Likviditási Poolok (Raydium)
 
-A projekt transzparenciájának megőrzése érdekében az alábbi tárcák kezelik a likviditást és a fejlesztéseket:
-
-1. **Liquidity & Treasury Wallet:**
-   `8BoMXwdVRLszBQgT3st2y1M87Mr4peXArSPVa9yzEj2F`
-2. **Marketing & Development Wallet:**
-   `6HXGpuDNhHmhu4Y26XLysL52pcPBZtuwYzpU91eC4jZJ`
+A token likviditása jelenleg a Raydium DEX-en érhető el:
+1. **SOL / TLX Pool:** `0.93 SOL` - `749,999 TLX`
+2. **USDC / TLX Pool:** `20 USDC` - `150,000 TLX`
 
 ---
 
-## 🚀 Gyors Telepítés (GitHub Pages)
+## 🔗 Hasznos Linkek
 
-Ha saját szervereden vagy GitHub Pages-en szeretnéd hosztolni a portált:
-
-1. Klónozd ezt a repozitóriumot:
-   ```bash
-   git clone [https://github.com/your-username/tetralux-portal.git](https://github.com/your-username/tetralux-portal.git)
+* [CoinMarketCap Követés](https://coinmarketcap.com)
+* [Raydium Swap & Pool](https://raydium.io/swap/?output=5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3)
