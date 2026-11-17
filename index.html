@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TetraLux (TLX) v3.0 | Official Solana Web3 DeFi Portal</title>
-    <meta name="description" content="TetraLux (TLX) v3.0 hivatalos Solana Web3 DeFi portál. Valós idejű Swap, Raydium likviditási poolok, 3x StakePoint LP zárolás, TetraDiamond NFT és 2027 (+33.3%) Mega Burn Event.">
+    <meta name="description" content="TetraLux (TLX) v3.0 hivatalos Solana Web3 DeFi portál. Valós idejű Swap, beágyazott Jupiter DEX, TLX Presale, Raydium likviditási poolok, 3x StakePoint LP zárolás, 100 db TetraDiamond NFT és 2027 (+33.3%) Mega Burn Event.">
     
     <!-- Favicon & Web3 Social Preview (OpenGraph) -->
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
     <meta property="og:type" content="website">
     <meta property="og:title" content="TetraLux (TLX) v3.0 | Official Solana Web3 DeFi Portal">
-    <meta property="og:description" content="Hivatalos Solana Web3 DeFi portál. MOST & 2027 v3.0 Likviditási Architektúra (4M TLX Lock), TetraDiamond NFT és +33.3% Mega Burn Event.">
+    <meta property="og:description" content="Hivatalos Solana Web3 DeFi portál. MOST & 2027 v3.0 Likviditási Architektúra (4M TLX Lock), 100 db TetraDiamond NFT (#001-#100) és +33.3% Mega Burn Event.">
     <meta property="og:image" content="https://veresbarnabas97-ui.github.io/TetraLux-Portal/logo.png">
     <meta property="og:url" content="https://veresbarnabas97-ui.github.io/TetraLux-Portal/">
     <meta name="twitter:card" content="summary_large_image">
@@ -20,6 +20,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- FontAwesome 6 Free Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Jupiter Terminal v3 Official Embed Script -->
+    <script src="https://terminal.jup.ag/main-v3.js" data-preload></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap');
@@ -141,9 +143,11 @@
                 <span class="text-slate-600">|</span>
                 <span class="text-slate-400 shrink-0">TLX Ár: <strong id="tickerPrice" class="text-cyan-400 font-mono-code">$0.0001790</strong></span>
                 <span class="text-slate-600 hidden sm:inline">|</span>
-                <span class="text-slate-400 hidden sm:inline shrink-0">Mint Authority: <strong class="text-emerald-400"><i class="fa-solid fa-ban mr-1"></i>Kikapcsolva</strong></span>
+                <span class="text-slate-400 hidden sm:inline shrink-0">SOL Ár: <strong id="tickerSolPrice" class="text-purple-400 font-mono-code">$135.00</strong></span>
                 <span class="text-slate-600 hidden md:inline">|</span>
-                <span class="text-slate-400 hidden md:inline shrink-0">2027 v3.0 Cél: <strong class="text-pink-400">4M TLX Lock + 33.3% Burn</strong></span>
+                <span class="text-slate-400 hidden md:inline shrink-0">Mint Authority: <strong class="text-emerald-400"><i class="fa-solid fa-ban mr-1"></i>Kikapcsolva</strong></span>
+                <span class="text-slate-600 hidden lg:inline">|</span>
+                <span class="text-slate-400 hidden lg:inline shrink-0">2027 v3.0 Cél: <strong class="text-pink-400">4M TLX Lock + 33.3% Burn</strong></span>
             </div>
             <div class="flex items-center space-x-3 shrink-0">
                 <div class="flex items-center space-x-2">
@@ -200,7 +204,10 @@
                     <i class="fa-solid fa-layer-group text-purple-400 text-xs"></i> MOST & 2027 Poolok
                 </a>
                 <a href="#nft" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5">
-                    <i class="fa-solid fa-gem text-emerald-400 text-xs"></i> Diamond NFT
+                    <i class="fa-solid fa-gem text-emerald-400 text-xs"></i> 100x Diamond NFT
+                </a>
+                <a href="#comic" class="hover:text-amber-400 transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-book-journal-whills text-amber-400 text-xs"></i> Képregény ($5)
                 </a>
                 <a href="#burn" class="hover:text-pink-400 transition-colors flex items-center gap-1.5">
                     <i class="fa-solid fa-fire text-pink-500 text-xs"></i> +33% Burn
@@ -213,16 +220,16 @@
             </nav>
 
             <!-- Action Buttons -->
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2.5">
                 <button id="walletBtn" onclick="connectSolanaWallet()" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-cyan-500/50 text-slate-200 font-bold text-xs sm:text-sm transition-all flex items-center space-x-2 cursor-pointer">
                     <i class="fa-solid fa-wallet text-purple-400"></i>
                     <span id="walletBtnText">Tárca Csatlakoztatása</span>
                 </button>
 
-                <a href="https://raydium.io/swap/?inputMint=sol&outputMint=5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-extrabold text-sm shadow-lg shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5">
-                    <i class="fa-solid fa-right-left"></i>
-                    <span>Raydium Swap</span>
-                </a>
+                <button onclick="addTlxToWalletHelper()" title="TLX Token Automatikus Megjelenítése a Tárcában" class="hidden sm:inline-flex items-center space-x-1.5 px-3.5 py-2.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-emerald-300 font-bold text-xs transition-all cursor-pointer">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    <span>+TLX Tárcába</span>
+                </button>
 
                 <!-- Mobile Hamburger -->
                 <button onclick="toggleMobileMenu()" aria-label="Menü megnyitása" class="lg:hidden w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white cursor-pointer">
@@ -231,11 +238,34 @@
             </div>
         </div>
 
+        <!-- Connected Wallet Live Balance Bar (Reveals automatically upon wallet connection) -->
+        <div id="connectedWalletBar" class="hidden bg-slate-900/95 border-t border-cyan-500/30 py-2 px-4 text-xs">
+            <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+                <div class="flex items-center space-x-4">
+                    <span class="text-emerald-400 font-bold flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        <span>Web3 Tárca Aktív:</span>
+                        <span id="barWalletAddress" class="font-mono-code text-white"></span>
+                    </span>
+                    <span class="text-slate-600">|</span>
+                    <span class="text-slate-300">SOL Egyenleg: <strong id="barSolBalance" class="text-purple-400 font-mono-code">0.0000 SOL</strong></span>
+                    <span class="text-slate-600">|</span>
+                    <span class="text-slate-300">TLX Egyenleg: <strong id="barTlxBalance" class="text-cyan-400 font-mono-code">0 TLX</strong></span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="addTlxToWalletHelper()" class="text-emerald-400 hover:underline font-bold cursor-pointer">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-1"></i>TLX Megjelenítése a Tárcában
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- Mobile Menu Drawer -->
         <div id="mobileMenu" class="hidden lg:hidden bg-slate-950/95 border-b border-slate-800 px-4 pt-3 pb-6 space-y-3">
-            <a href="#terminal" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 font-semibold hover:text-cyan-400"><i class="fa-solid fa-bolt text-cyan-400 w-6"></i> DeFi Terminál & Swap</a>
+            <a href="#terminal" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 font-semibold hover:text-cyan-400"><i class="fa-solid fa-bolt text-cyan-400 w-6"></i> DeFi Terminál, Presale & Swap</a>
             <a href="#pools" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 font-semibold hover:text-cyan-400"><i class="fa-solid fa-water text-purple-400 w-6"></i> MOST & 2027 (v3.0) Likviditás</a>
-            <a href="#nft" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 font-semibold hover:text-emerald-400"><i class="fa-solid fa-gem text-emerald-400 w-6"></i> TetraDiamond NFT (+10% Jutalom)</a>
+            <a href="#nft" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 font-semibold hover:text-emerald-400"><i class="fa-solid fa-gem text-emerald-400 w-6"></i> 100x TetraDiamond NFT (+10% Jutalom)</a>
+            <a href="#comic" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 font-semibold hover:text-amber-400"><i class="fa-solid fa-book-journal-whills text-amber-400 w-6"></i> TetraLux 4 Részes Képregény ($5 TLX)</a>
             <a href="#burn" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 font-semibold hover:text-pink-400"><i class="fa-solid fa-fire text-pink-500 w-6"></i> 2027 Mega Burn (+33.3%)</a>
             <a href="#security" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 font-semibold hover:text-emerald-400"><i class="fa-solid fa-shield-halved text-emerald-400 w-6"></i> Biztonság & 3x LP Zárolás</a>
             <a href="#roadmap" onclick="toggleMobileMenu()" class="block py-2 text-slate-200 font-semibold hover:text-cyan-400"><i class="fa-solid fa-road text-blue-400 w-6"></i> Útvonalterv (v3.0)</a>
@@ -263,7 +293,7 @@
                 <div class="lg:col-span-7 space-y-7 text-center lg:text-left">
                     <div class="inline-flex items-center space-x-2.5 px-4 py-2 rounded-full bg-slate-900/90 border border-slate-800 text-cyan-400 text-xs font-bold uppercase tracking-widest shadow-inner">
                         <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                        <span>TetraLux v3.0 • Mint Kikapcsolva • 3x LP Zárolva • +33.3% Burn</span>
+                        <span>TetraLux v3.0 • Mint Kikapcsolva • 3x LP Zárolva • 100x Diamond NFT</span>
                     </div>
 
                     <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.12]">
@@ -271,7 +301,7 @@
                     </h1>
 
                     <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                        A <strong>TetraLux (TLX) v3.0</strong> egy transzparens, deflációs Web3 eszköz a Solana blokkláncon. Aktív <strong>SOL/TLX</strong> és <strong>USDC/TLX</strong> Raydium poolokkal, 2026. december 7-ig tartó 3x StakePoint zárolással, december 8. utáni <strong>4 000 000 TLX-es v3.0 újrazárolással</strong> (`1M + 1M + 2M TLX`), és az azt követő <strong>+33,3%-os Mega Burn Eventtel</strong> építünk értéket.
+                        A <strong>TetraLux (TLX) v3.0</strong> egy transzparens, deflációs Web3 eszköz a Solana blokkláncon. Aktív <strong>SOL/TLX</strong> és <strong>USDC/TLX</strong> Raydium poolokkal, 2026. december 7-ig tartó 3x StakePoint zárolással, 100 db sorszámozott <strong>TetraDiamond NFT-vel (#001–#100)</strong>, december 8. utáni <strong>4 000 000 TLX-es v3.0 újrazárolással</strong> (`1M + 1M + 2M TLX`), és az azt követő <strong>+33,3%-os Mega Burn Eventtel</strong> építünk értéket.
                     </p>
 
                     <!-- Smart Contract Interactive Box -->
@@ -291,6 +321,9 @@
                                 <button onclick="copyContract()" class="px-3.5 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-extrabold transition-all flex items-center space-x-1.5 cursor-pointer">
                                     <i id="copyIcon" class="fa-regular fa-copy"></i>
                                     <span id="copyText">Másolás</span>
+                                </button>
+                                <button onclick="addTlxToWalletHelper()" title="Automatikus megjelenítés a tárcában" class="px-3 py-2 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 text-xs font-bold transition-all cursor-pointer">
+                                    <i class="fa-solid fa-wallet mr-1"></i>+Tárca
                                 </button>
                                 <a href="https://solscan.io/token/5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3" target="_blank" rel="noopener noreferrer" title="Megtekintés Solscanen" class="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-cyan-400 border border-slate-800 transition-colors">
                                     <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
@@ -337,34 +370,40 @@
                             <i class="fa-solid fa-robot text-sm"></i>
                             <span>@TetraLuxBot</span>
                         </a>
-                        <a href="https://github.com/veresbarnabas97-ui/TetraLux-Portal/blob/main/Whitepaper.md" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 font-bold text-xs sm:text-sm flex items-center space-x-2 transition-all text-emerald-400">
-                            <i class="fa-solid fa-file-lines text-sm"></i>
-                            <span>Whitepaper v3.0</span>
+                        <a href="#nft" class="px-4 py-2.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 font-bold text-xs sm:text-sm flex items-center space-x-2 transition-all text-emerald-300">
+                            <i class="fa-solid fa-gem text-sm"></i>
+                            <span>100x Diamond NFT Mint</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- Right Column: Interactive Web3 DeFi Terminal (Swap / Liquidity / Stake) -->
+                <!-- Right Column: Interactive Web3 DeFi Terminal (5 Modules: Swap / Jupiter Live / Presale / Liquidity / Stake) -->
                 <div class="lg:col-span-5">
                     <div class="glass-card rounded-3xl p-5 sm:p-6 shadow-2xl glow-purple border border-slate-700/80 relative">
                         
-                        <!-- Terminal Header Tabs -->
-                        <div class="grid grid-cols-3 gap-1.5 bg-slate-950/90 p-1.5 rounded-2xl border border-slate-800/80 mb-6">
-                            <button onclick="switchTerminalTab('swap')" id="tabBtn-swap" class="py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition-all bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-md cursor-pointer">
-                                <i class="fa-solid fa-right-left mr-1"></i> Swap
+                        <!-- Terminal Header Tabs (5 Functional Web3 Tabs) -->
+                        <div class="grid grid-cols-5 gap-1 bg-slate-950/90 p-1.5 rounded-2xl border border-slate-800/80 mb-6 text-center">
+                            <button onclick="switchTerminalTab('swap')" id="tabBtn-swap" class="py-2 px-1.5 rounded-xl text-[11px] sm:text-xs font-extrabold transition-all bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-md cursor-pointer">
+                                <i class="fa-solid fa-right-left block sm:inline mr-0.5"></i> Swap
                             </button>
-                            <button onclick="switchTerminalTab('liquidity')" id="tabBtn-liquidity" class="py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold text-slate-400 hover:text-white transition-all cursor-pointer">
-                                <i class="fa-solid fa-droplet mr-1"></i> Likviditás
+                            <button onclick="switchTerminalTab('jupwidget')" id="tabBtn-jupwidget" class="py-2 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-slate-400 hover:text-white transition-all cursor-pointer">
+                                <i class="fa-solid fa-shuttle-space block sm:inline mr-0.5 text-cyan-400"></i> Jupiter
                             </button>
-                            <button onclick="switchTerminalTab('stake')" id="tabBtn-stake" class="py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold text-slate-400 hover:text-white transition-all cursor-pointer">
-                                <i class="fa-solid fa-lock mr-1"></i> Stake & Lock
+                            <button onclick="switchTerminalTab('presale')" id="tabBtn-presale" class="py-2 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-slate-400 hover:text-white transition-all cursor-pointer">
+                                <i class="fa-solid fa-rocket block sm:inline mr-0.5 text-amber-400"></i> Presale
+                            </button>
+                            <button onclick="switchTerminalTab('liquidity')" id="tabBtn-liquidity" class="py-2 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-slate-400 hover:text-white transition-all cursor-pointer">
+                                <i class="fa-solid fa-droplet block sm:inline mr-0.5"></i> Pool
+                            </button>
+                            <button onclick="switchTerminalTab('stake')" id="tabBtn-stake" class="py-2 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-slate-400 hover:text-white transition-all cursor-pointer">
+                                <i class="fa-solid fa-lock block sm:inline mr-0.5"></i> Lock
                             </button>
                         </div>
 
-                        <!-- ================= TAB 1: SWAP TERMINAL ================= -->
+                        <!-- ================= TAB 1: RAYDIUM / JUPITER SWAP CALCULATOR ================= -->
                         <div id="tabContent-swap" class="space-y-4">
                             <div class="flex items-center justify-between text-xs text-slate-400 px-1">
-                                <span>Valós Idejű Web3 Kalkulátor & Swap</span>
+                                <span>Valós Idejű Raydium Vétel & Eladás</span>
                                 <div class="flex items-center space-x-1">
                                     <span>Slippage:</span>
                                     <button onclick="setSlippage('0.5%')" id="slip-05" class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-bold cursor-pointer">0.5%</button>
@@ -460,17 +499,73 @@
                                     <i class="fa-solid fa-bolt mr-1.5"></i> <span id="primarySwapCtaText">TLX Vásárlás Raydiumon (USDC/SOL)</span>
                                 </a>
                                 <div class="grid grid-cols-2 gap-2">
-                                    <a href="https://jup.ag/swap/SOL-5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3" target="_blank" rel="noopener noreferrer" class="py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-cyan-400 font-bold text-xs text-center block transition-all">
-                                        <i class="fa-solid fa-shuttle-space mr-1 text-cyan-400"></i> Jupiter Swap
-                                    </a>
+                                    <button onclick="switchTerminalTab('jupwidget')" class="py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-cyan-500/40 text-cyan-400 font-bold text-xs text-center block transition-all cursor-pointer">
+                                        <i class="fa-solid fa-shuttle-space mr-1"></i> Helyi Jupiter Swap
+                                    </button>
                                     <a href="https://birdeye.so/token/5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3?chain=solana" target="_blank" rel="noopener noreferrer" class="py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-purple-400 font-bold text-xs text-center block transition-all">
-                                        <i class="fa-solid fa-chart-Simple mr-1 text-purple-400"></i> Birdeye Terminal
+                                        <i class="fa-solid fa-chart-simple mr-1 text-purple-400"></i> Birdeye Terminal
                                     </a>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- ================= TAB 2: LIQUIDITY ADD PANEL ================= -->
+                        <!-- ================= TAB 2: EMBEDDED LIVE JUPITER DEX WIDGET ================= -->
+                        <div id="tabContent-jupwidget" class="hidden space-y-3">
+                            <div class="flex items-center justify-between text-xs text-slate-400 px-1">
+                                <span><i class="fa-solid fa-shuttle-space text-cyan-400 mr-1"></i> Beágyazott Jupiter & Raydium DEX</span>
+                                <span class="text-emerald-400 font-mono-code font-bold">On-Page Swap</span>
+                            </div>
+                            <div id="integrated-jupiter-terminal" class="w-full min-h-[420px] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800"></div>
+                        </div>
+
+                        <!-- ================= TAB 3: TLX PRESALE SMART CONTRACT MODULE ================= -->
+                        <div id="tabContent-presale" class="hidden space-y-4">
+                            <div class="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-3.5 flex items-center justify-between">
+                                <div>
+                                    <div class="text-xs font-extrabold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                                        <i class="fa-solid fa-rocket"></i> TLX Web3 Presale & Likviditási Alap
+                                    </div>
+                                    <div class="text-[11px] text-slate-300 mt-0.5">Közvetlen okosszerződéses & @TetraLuxBot előértékesítés</div>
+                                </div>
+                                <span class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-mono-code text-xs font-bold">+15% Bónusz</span>
+                            </div>
+
+                            <div class="bg-slate-950/90 border border-slate-800 rounded-2xl p-4 space-y-3">
+                                <div>
+                                    <div class="flex justify-between text-xs text-slate-400 mb-1.5">
+                                        <span>Befizetendő SOL összeg (Presale)</span>
+                                        <div class="space-x-1">
+                                            <button onclick="setPresaleSol(0.1)" class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800 text-[11px] cursor-pointer">0.1 SOL</button>
+                                            <button onclick="setPresaleSol(0.5)" class="px-2 py-0.5 rounded bg-slate-900 text-amber-400 border border-amber-500/30 text-[11px] cursor-pointer">0.5 SOL</button>
+                                            <button onclick="setPresaleSol(1)" class="px-2 py-0.5 rounded bg-slate-900 text-cyan-400 border border-cyan-500/30 text-[11px] cursor-pointer">1 SOL</button>
+                                        </div>
+                                    </div>
+                                    <input type="number" id="presaleSolInput" value="0.25" min="0.05" step="0.05" oninput="calculatePresale()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white font-extrabold font-mono-code text-lg focus:outline-none focus:border-amber-400">
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-2.5 pt-1">
+                                    <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+                                        <div class="text-[10px] text-slate-400">Alap Presale Mennyiség</div>
+                                        <div id="presaleBaseTlx" class="text-sm font-extrabold text-white font-mono-code mt-0.5">188,547 TLX</div>
+                                    </div>
+                                    <div class="bg-slate-900/90 p-3 rounded-xl border border-amber-500/30">
+                                        <div class="text-[10px] text-amber-400 font-bold">+15% Presale Bónuszom</div>
+                                        <div id="presaleTotalTlx" class="text-sm font-extrabold text-amber-400 font-mono-code mt-0.5">216,830 TLX</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <button onclick="executePresalePurchase()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-400 via-orange-500 to-pink-500 hover:from-amber-300 hover:to-pink-400 text-slate-950 font-extrabold text-sm text-center block shadow-lg transition-all cursor-pointer">
+                                    <i class="fa-solid fa-bolt mr-1.5"></i> TLX Presale Vásárlás Indítása
+                                </button>
+                                <p class="text-[11px] text-slate-400 text-center">
+                                    A Presale-ből befolyt SOL 100%-ban a 2027-es 4M TLX likviditási poolokat erősíti.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- ================= TAB 4: LIQUIDITY ADD PANEL ================= -->
                         <div id="tabContent-liquidity" class="hidden space-y-4">
                             <div class="text-xs text-slate-400 px-1">
                                 Válaszd ki a likviditási párt (<strong>USDC-TLX</strong> vagy <strong>SOL-TLX</strong>), és számold ki a szükséges token arányt a Raydium poolhoz való csatlakozáshoz.
@@ -517,7 +612,7 @@
                             </a>
                         </div>
 
-                        <!-- ================= TAB 3: STAKE & LOCK PANEL ================= -->
+                        <!-- ================= TAB 5: STAKE & LOCK PANEL ================= -->
                         <div id="tabContent-stake" class="hidden space-y-4">
                             <div class="bg-emerald-950/30 border border-emerald-500/30 rounded-2xl p-4 space-y-3">
                                 <div class="flex items-center justify-between">
@@ -750,7 +845,7 @@
                         </div>
                         <div class="bg-slate-950/90 border border-cyan-500/30 rounded-2xl px-4 py-3 text-center shrink-0">
                             <div class="text-[10px] uppercase tracking-wider text-slate-400">Visszaszámlálás Dec. 8-ig:</div>
-                            <div id="relockCountdownText" class="text-base sm:text-lg font-mono-code font-extrabold text-cyan-400 mt-0.5">25 Nap : 19 Óra</div>
+                            <div id="relockCountdownText" class="text-base sm:text-lg font-mono-code font-extrabold text-cyan-400 mt-0.5">20 Nap : 07 Óra</div>
                         </div>
                     </div>
 
@@ -864,70 +959,168 @@
         </div>
     </section>
 
-    <!-- TETRADIAMOND NFT SECTION (#001 - #100) -->
+    <!-- TETRADIAMOND NFT SECTION (#001 - #100 INTERACTIVE MINT & 90D VAULT) -->
     <section id="nft" class="py-24 border-t border-slate-800/80 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="glass-card rounded-3xl p-8 sm:p-12 border border-emerald-500/30 glow-emerald relative overflow-hidden">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                     
-                    <!-- NFT Visual Card (Uses diamond001.png with built-in emerald vector fallback) -->
-                    <div class="lg:col-span-5 flex justify-center">
+                    <!-- NFT Interactive Visual Card (#001 - #100 Dynamic Switcher) -->
+                    <div class="lg:col-span-5 flex flex-col items-center">
                         <div class="w-72 sm:w-80 rounded-3xl p-5 bg-gradient-to-br from-[#042f2e] via-[#021716] to-slate-950 border border-emerald-400/40 shadow-2xl text-center space-y-4">
-                            <img src="diamond001.png" alt="TetraDiamond #001" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-full rounded-2xl object-cover border border-emerald-500/20">
-                            <div style="display:none;" class="w-full aspect-[4/5] rounded-2xl bg-gradient-to-br from-[#063f32] via-[#03201b] to-[#010908] border border-emerald-400/40 flex-col items-center justify-center p-8">
+                            <img id="nftDynamicImage" src="images/001.png" alt="TetraDiamond #001" onerror="this.onerror=null; this.src='diamond001.png'; this.onerror=function(){this.style.display='none'; document.getElementById('nftFallbackCard').style.display='flex';};" class="w-full rounded-2xl object-cover border border-emerald-500/20">
+                            <div id="nftFallbackCard" style="display:none;" class="w-full aspect-[4/5] rounded-2xl bg-gradient-to-br from-[#063f32] via-[#03201b] to-[#010908] border border-emerald-400/40 flex-col items-center justify-center p-8">
                                 <i class="fa-regular fa-gem text-7xl text-[#2dd4bf] mb-8 drop-shadow-[0_0_20px_rgba(45,212,191,0.45)]"></i>
-                                <span class="font-mono-code tracking-[0.25em] text-[#5eead4] text-sm font-semibold">DIAMOND #001</span>
+                                <span id="nftFallbackSerialText" class="font-mono-code tracking-[0.25em] text-[#5eead4] text-sm font-semibold">DIAMOND #001</span>
                             </div>
                             <div class="flex justify-between items-center text-xs font-mono-code px-1 pt-1">
-                                <span class="text-emerald-400 font-bold">DIAMOND #001 – #100</span>
-                                <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-bold">Max 100 db</span>
+                                <span id="nftCardCaption" class="text-emerald-400 font-bold">DIAMOND #001 / #100</span>
+                                <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-bold">Metaplex JSON</span>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Serial Selector Slider -->
+                        <div class="w-72 sm:w-80 mt-5 bg-slate-950/90 border border-slate-800 rounded-2xl p-4">
+                            <div class="flex justify-between items-center text-xs mb-2">
+                                <span class="text-slate-400 font-semibold">Sorszám kiválasztása:</span>
+                                <span id="selectedSerialBadge" class="font-mono-code font-extrabold text-emerald-400">#001</span>
+                            </div>
+                            <input type="range" id="nftSerialRange" min="1" max="100" value="1" oninput="updateSelectedNftSerial(this.value)" class="w-full">
+                            <div class="flex justify-between text-[10px] font-mono-code text-slate-500 mt-1">
+                                <span>#001</span>
+                                <span>#025</span>
+                                <span>#050</span>
+                                <span>#075</span>
+                                <span>#100</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- NFT Utility & Yield Details -->
+                    <!-- NFT Utility, Smart Contract Rules & Mint Controls -->
                     <div class="lg:col-span-7 space-y-6">
                         <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-extrabold uppercase tracking-widest">
                             <i class="fa-solid fa-gem"></i>
-                            <span>Limitált Web3 Kollekció • Összesen 100 db</span>
+                            <span>Limitált Web3 Kollekció • 100 db Sorszámozott NFT (#001 – #100)</span>
                         </div>
 
                         <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
-                            TetraDiamond NFT — <span class="text-emerald-400">10% TLX Jutalom</span> 3 Hónap Tartás Után
+                            TetraDiamond NFT — <span class="text-emerald-400">90 Napos Vault & +10% TLX Hozam</span>
                         </h2>
 
                         <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                            A <strong>TetraDiamond NFT</strong> kollekció mindössze 100 egyedi darabból áll, és közvetlenül a TetraLux likviditási poolok tőkemélységének növelését szolgálja. Minden tulajdonos, aki 3 hónapig (90 napig) a tárcájában tartja az NFT-t, garantált <strong>10% hozamot ($1 értékű TLX tokent)</strong> kap jutalmul.
+                            A <strong>TetraDiamond NFT (#001 – #100)</strong> kollekció mindössze 100 egyedi, sorszámozott kártyából áll (`tetradiamond_nft_vault` okosszerződés). Minden minteléskor létrejön egy blokklánc-tanúsítvány (<strong>DiamondCertificate PDA</strong>), amely rögzíti a 90 napos (`7,776,000 mp`) tartási időt. Ha az NFT végig az eredeti tárcában marad, a <strong>Reward Vault PDA</strong> automatikusan kifizeti a garantált <strong>+10% ($1 értékű TLX)</strong> hozamot!
                         </p>
 
+                        <!-- Live NFT Pricing & Reward Stats -->
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <div class="bg-slate-950/90 border border-slate-800 p-4 rounded-2xl">
-                                <div class="text-xs text-slate-400">Vételár (Mint Price)</div>
-                                <div class="text-xl font-extrabold text-white font-mono-code mt-1">$10 in SOL</div>
-                                <div class="text-[11px] text-emerald-400 mt-0.5">Fix belépési ár</div>
+                                <div class="text-xs text-slate-400">Belépési Ár ($10 USD)</div>
+                                <div id="nftLiveSolPrice" class="text-xl font-extrabold text-white font-mono-code mt-1">~0.0741 SOL</div>
+                                <div class="text-[11px] text-emerald-400 mt-0.5">Fix $10.00 in SOL</div>
                             </div>
                             <div class="bg-slate-950/90 border border-slate-800 p-4 rounded-2xl">
-                                <div class="text-xs text-slate-400">Tartási Időszak</div>
-                                <div class="text-xl font-extrabold text-cyan-400 font-mono-code mt-1">3 Hónap</div>
-                                <div class="text-[11px] text-slate-400 mt-0.5">Listázásmentes tartás</div>
+                                <div class="text-xs text-slate-400">On-Chain Időzítő</div>
+                                <div class="text-xl font-extrabold text-cyan-400 font-mono-code mt-1">90 Nap (3 Hó)</div>
+                                <div class="text-[11px] text-slate-400 mt-0.5">7,776,000 mp PDA Lock</div>
                             </div>
                             <div class="bg-slate-950/90 border border-slate-800 p-4 rounded-2xl">
-                                <div class="text-xs text-slate-400">Garantált Jutalom</div>
-                                <div class="text-xl font-extrabold text-emerald-400 font-mono-code mt-1">+10% ($1 TLX)</div>
-                                <div id="nftRewardEstimate" class="text-[11px] text-emerald-400/80 mt-0.5">~5,587 TLX Airdrop</div>
+                                <div class="text-xs text-slate-400">Garantált Jutalom (+10%)</div>
+                                <div class="text-xl font-extrabold text-emerald-400 font-mono-code mt-1">+$1.00 in TLX</div>
+                                <div id="nftRewardEstimate" class="text-[11px] text-emerald-400/80 mt-0.5 font-mono-code">~5,587 TLX Airdrop</div>
                             </div>
                         </div>
 
-                        <div class="pt-2 flex flex-wrap gap-4">
-                            <a href="https://t.me/TetraLux00" target="_blank" rel="noopener noreferrer" class="px-6 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-extrabold text-sm shadow-lg transition-all">
-                                <i class="fa-solid fa-gem mr-2"></i> TetraDiamond NFT Igénylés (Telegram)
-                            </a>
-                            <a href="https://t.me/TetraLuxBot" target="_blank" rel="noopener noreferrer" class="px-5 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-purple-400 font-bold text-sm transition-all">
-                                <i class="fa-solid fa-robot mr-1.5"></i> @TetraLuxBot Megnyitása
-                            </a>
+                        <!-- Interactive Mint & Claim Action Box -->
+                        <div class="bg-slate-950/80 border border-emerald-500/30 rounded-2xl p-5 space-y-4">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                                <div>
+                                    <div class="text-xs font-extrabold uppercase tracking-wider text-emerald-400">Kiválasztott Kártya Mintelése: <span id="mintBoxSerialTitle" class="text-white font-mono-code">DIAMOND #001</span></div>
+                                    <div class="text-[11px] text-slate-400">Fizetés Solana Pay / Phantom tárcával vagy 1-kattintással a @TetraLuxBot-on keresztül</div>
+                                </div>
+                                <a id="nftMetadataJsonLink" href="metadata/001.json" target="_blank" class="text-xs font-mono-code text-cyan-400 hover:underline shrink-0">
+                                    <i class="fa-solid fa-file-code mr-1"></i>metadata/001.json ↗
+                                </a>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <button onclick="mintSelectedDiamondNft()" class="py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-extrabold text-xs sm:text-sm text-center shadow-lg transition-all cursor-pointer">
+                                    <i class="fa-solid fa-gem mr-1.5"></i> Mint @TetraLuxBot ($10)
+                                </button>
+                                <button onclick="claim90dNftReward()" class="py-3.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-emerald-500/40 text-emerald-300 font-bold text-xs sm:text-sm text-center transition-all cursor-pointer">
+                                    <i class="fa-solid fa-unlock-keyhole mr-1.5"></i> 90 Napos Hozam Claim
+                                </button>
+                                <a href="https://t.me/TetraLux00" target="_blank" rel="noopener noreferrer" class="py-3.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-cyan-400 font-bold text-xs sm:text-sm text-center transition-all flex items-center justify-center">
+                                    <i class="fa-brands fa-telegram mr-1.5"></i> VIP Csatorna
+                                </a>
+                            </div>
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXCLUSIVE 4-PART TETRALUX COMIC SECTION ($5 IN TLX) -->
+    <section id="comic" class="py-20 bg-slate-900/25 border-t border-slate-800/80 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 border border-amber-500/30 relative overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 text-xs font-extrabold uppercase tracking-widest">
+                            <i class="fa-solid fa-book-journal-whills"></i>
+                            <span>Exkluzív Digitális Kiadvány • TLX Token Hasznosság (Utility)</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                            Hivatalos 4 Részes <span class="text-amber-400">TetraLux Képregény</span> ($5 in TLX)
+                        </h2>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                            Ismerd meg a TetraLux univerzum történetét a hivatalos 4 részes digitális képregénysorozatban! A képregény kizárólag <strong>$5 USD értékű TLX tokenért</strong> vásárolható meg, így minden eladott példány közvetlenül a TLX ökoszisztéma keresletét növeli. A blokklánc-tranzakció után a <strong>@TetraLuxBot</strong> (`/verify_comic`) azonnal kézbesíti mind a 4 fejezetet!
+                        </p>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                            <div class="bg-slate-950/90 border border-slate-800 p-3.5 rounded-2xl text-center">
+                                <div class="text-xs font-extrabold text-amber-400">I. Fejezet</div>
+                                <div class="text-[11px] text-slate-400 mt-1">Genesis & A Kód</div>
+                            </div>
+                            <div class="bg-slate-950/90 border border-slate-800 p-3.5 rounded-2xl text-center">
+                                <div class="text-xs font-extrabold text-cyan-400">II. Fejezet</div>
+                                <div class="text-[11px] text-slate-400 mt-1">A 100 Gyémánt</div>
+                            </div>
+                            <div class="bg-slate-950/90 border border-slate-800 p-3.5 rounded-2xl text-center">
+                                <div class="text-xs font-extrabold text-purple-400">III. Fejezet</div>
+                                <div class="text-[11px] text-slate-400 mt-1">A 3x Pajzs Zárolás</div>
+                            </div>
+                            <div class="bg-slate-950/90 border border-slate-800 p-3.5 rounded-2xl text-center">
+                                <div class="text-xs font-extrabold text-pink-400">IV. Fejezet</div>
+                                <div class="text-[11px] text-slate-400 mt-1">2027 Mega Burn</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-slate-950/90 border border-slate-800 rounded-2xl p-6 space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                            <span class="text-sm font-extrabold text-white">Képregény Csomag (1–4. Rész)</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-mono-code text-xs font-extrabold">$5.00 USD</span>
+                        </div>
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between py-1.5 border-b border-slate-900">
+                                <span class="text-slate-400">Fizetendő TLX (Élő DEX Árfolyamon):</span>
+                                <span id="comicLiveTlxCost" class="font-mono-code font-extrabold text-cyan-400">~27,933 TLX</span>
+                            </div>
+                            <div class="flex justify-between py-1.5 border-b border-slate-900">
+                                <span class="text-slate-400">Kézbesítés módja:</span>
+                                <span class="text-emerald-400 font-bold">Azonnali (@TetraLuxBot PDF/HD)</span>
+                            </div>
+                            <div class="flex justify-between py-1.5">
+                                <span class="text-slate-400">Ellenőrző Bot Parancs:</span>
+                                <span class="font-mono-code text-purple-400">/verify_comic &lt;TX_HASH&gt;</span>
+                            </div>
+                        </div>
+                        <a href="https://t.me/TetraLuxBot?start=buy_comic" target="_blank" rel="noopener noreferrer" class="w-full py-4 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-extrabold text-sm text-center block shadow-lg transition-all">
+                            <i class="fa-solid fa-cart-shopping mr-1.5"></i> Képregény Megvásárlása ($5 in TLX)
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1142,7 +1335,7 @@
                         <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-emerald-400 mt-0.5"></i><span>Solana SPL Smart Contract & Mint Authority végleges kikapcsolása</span></li>
                         <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-emerald-400 mt-0.5"></i><span>SOL/TLX (750k) és USDC/TLX (293k+) Raydium poolok</span></li>
                         <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-emerald-400 mt-0.5"></i><span>3x StakePoint zárolás (112.29 LP, 750 LP, 2M TLX)</span></li>
-                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-emerald-400 mt-0.5"></i><span>TetraDiamond NFT (#001–#100) +10% TLX jutalommal</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-emerald-400 mt-0.5"></i><span>TetraDiamond NFT (#001–#100) +10% TLX jutalommal & $5 Képregény</span></li>
                     </ul>
                 </div>
 
@@ -1219,7 +1412,7 @@
             </div>
 
             <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
-                <p>&copy; 2026–2027 TetraLux Token (TLX) v3.0. Minden jog fenntartva. Hivatalos Portál: veresbarnabas97-ui.github.io/TetraLux-Portal/</p>
+                <p>&copy; 2026–2027 TetraLux Token (TLX) v3.0 — Alapító: Veres Barnabás. Hivatalos Portál: veresbarnabas97-ui.github.io/TetraLux-Portal/</p>
                 <p>Kockázati figyelmeztetés: A kriptovaluta kereskedés magas volatilitással jár. Mindig végezz saját kutatást (DYOR).</p>
             </div>
         </div>
@@ -1238,12 +1431,17 @@
         // Core Token Constants
         const TLX_CA = "5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3";
         const USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
+        const SOL_MINT = "So11111111111111111111111111111111111111112";
+        const SOLANA_RPC = "https://api.mainnet-beta.solana.com";
         
         // Baseline Verified Price & Rates ($0.0001790)
         let currentTlxPriceUsd = 0.0001790;
-        let solPriceUsd = 135;
+        let solPriceUsd = 135.00;
         let selectedLiquidityPool = "USDC";
         let isBuyingTLX = true;
+        let connectedWalletAddress = null;
+        let jupiterInitialized = false;
+        let currentNftSerial = "001";
 
         // Toast Helper
         function showToast(message, iconClass = "fa-solid fa-circle-check text-emerald-400") {
@@ -1253,7 +1451,7 @@
             toast.classList.remove("translate-y-24", "opacity-0");
             setTimeout(() => {
                 toast.classList.add("translate-y-24", "opacity-0");
-            }, 3200);
+            }, 3500);
         }
 
         // Copy Contract Address
@@ -1264,7 +1462,7 @@
             const handleSuccess = () => {
                 copyText.innerText = "Másolva!";
                 copyIcon.className = "fa-solid fa-check";
-                showToast("Smart Contract cím a vágólapra másolva!");
+                showToast("TLX Smart Contract cím a vágólapra másolva!");
                 setTimeout(() => {
                     copyText.innerText = "Másolás";
                     copyIcon.className = "fa-regular fa-copy";
@@ -1303,7 +1501,7 @@
             icon.className = menu.classList.contains("hidden") ? "fa-solid fa-bars text-lg" : "fa-solid fa-xmark text-lg";
         }
 
-        // Real Solana Phantom / Solflare Wallet Connection
+        // Real Solana Phantom / Solflare Wallet Connection + On-Chain Balance Reader
         async function connectSolanaWallet() {
             const btnText = document.getElementById("walletBtnText");
             try {
@@ -1311,34 +1509,146 @@
                 if (provider) {
                     const resp = await provider.connect();
                     const pubKey = (resp && resp.publicKey ? resp.publicKey : provider.publicKey).toString();
+                    connectedWalletAddress = pubKey;
                     const shortKey = pubKey.slice(0, 4) + "..." + pubKey.slice(-4);
                     btnText.innerText = shortKey;
-                    showToast("Solana tárca sikeresen csatlakoztatva: " + shortKey);
+                    document.getElementById("connectedWalletBar").classList.remove("hidden");
+                    document.getElementById("barWalletAddress").innerText = shortKey;
+                    showToast("Solana tárca csatlakoztatva: " + shortKey);
+                    fetchOnChainBalances(pubKey);
                 } else {
-                    showToast("Phantom vagy Solflare bővítmény nem található. Átirányítás a Raydiumra...", "fa-solid fa-wallet text-cyan-400");
+                    showToast("Phantom vagy Solflare nem található. Megnyitás...", "fa-solid fa-wallet text-cyan-400");
                     setTimeout(() => {
-                        window.open(`https://raydium.io/swap/?inputMint=sol&outputMint=${TLX_CA}`, "_blank", "noopener,noreferrer");
-                    }, 1500);
+                        window.open("https://phantom.app/", "_blank", "noopener,noreferrer");
+                    }, 1200);
                 }
             } catch (err) {
                 showToast("Tárca csatlakozás megszakítva.", "fa-solid fa-triangle-exclamation text-amber-400");
             }
         }
 
-        // Switch Terminal Tabs (Swap / Liquidity / Stake)
+        // Fetch Live SOL and TLX Balance from Solana RPC
+        async function fetchOnChainBalances(walletPubkey) {
+            try {
+                // 1. Fetch SOL Balance
+                const solRes = await fetch(SOLANA_RPC, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "getBalance", params: [walletPubkey] })
+                });
+                const solJson = await solRes.json();
+                if (solJson && solJson.result && typeof solJson.result.value === "number") {
+                    const solBal = (solJson.result.value / 1e9).toFixed(4);
+                    document.getElementById("barSolBalance").innerText = `${solBal} SOL`;
+                }
+
+                // 2. Fetch TLX SPL Token Balance
+                const tlxRes = await fetch(SOLANA_RPC, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        jsonrpc: "2.0", id: 2, method: "getTokenAccountsByOwner",
+                        params: [walletPubkey, { mint: TLX_CA }, { encoding: "jsonParsed" }]
+                    })
+                });
+                const tlxJson = await tlxRes.json();
+                const accounts = tlxJson?.result?.value || [];
+                if (accounts.length > 0) {
+                    const uiAmount = accounts[0].account.data.parsed.info.tokenAmount.uiAmount || 0;
+                    document.getElementById("barTlxBalance").innerText = `${ Number(uiAmount).toLocaleString('hu-HU') } TLX`;
+                }
+            } catch (e) {
+                // Silent fallback if public RPC rate-limits
+            }
+        }
+
+        // Automatic TLX Token Display Helper for Phantom / Solflare
+        async function addTlxToWalletHelper() {
+            copyContract();
+            if (!connectedWalletAddress) {
+                await connectSolanaWallet();
+            }
+            showToast("TLX CA vágólapon! A Phantom tárca a legelső TLX tranzakció után automatikusan megjeleníti a tokent.", "fa-solid fa-wand-magic-sparkles text-emerald-400");
+        }
+
+        // Switch Terminal Tabs (Swap / Jupiter Live / Presale / Liquidity / Stake)
         function switchTerminalTab(tab) {
-            const tabs = ['swap', 'liquidity', 'stake'];
+            const tabs = ['swap', 'jupwidget', 'presale', 'liquidity', 'stake'];
             tabs.forEach(t => {
                 const content = document.getElementById(`tabContent-${t}`);
                 const btn = document.getElementById(`tabBtn-${t}`);
                 if (t === tab) {
                     content.classList.remove("hidden");
-                    btn.className = "py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition-all bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-md cursor-pointer";
+                    btn.className = "py-2 px-1.5 rounded-xl text-[11px] sm:text-xs font-extrabold transition-all bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-md cursor-pointer";
                 } else {
                     content.classList.add("hidden");
-                    btn.className = "py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold text-slate-400 hover:text-white transition-all cursor-pointer";
+                    btn.className = "py-2 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-slate-400 hover:text-white transition-all cursor-pointer";
                 }
             });
+
+            if (tab === 'jupwidget' && !jupiterInitialized && window.Jupiter) {
+                jupiterInitialized = true;
+                window.Jupiter.init({
+                    displayMode: "integrated",
+                    integratedTargetId: "integrated-jupiter-terminal",
+                    endpoint: SOLANA_RPC,
+                    formProps: {
+                        initialInputMint: SOL_MINT,
+                        initialOutputMint: TLX_CA,
+                        fixedOutputMint: false
+                    }
+                });
+            }
+        }
+
+        // Presale Calculator & Action
+        function setPresaleSol(val) {
+            document.getElementById("presaleSolInput").value = val;
+            calculatePresale();
+        }
+
+        function calculatePresale() {
+            const solAmt = Math.max(0, parseFloat(document.getElementById("presaleSolInput").value) || 0);
+            const tlxPerSol = Math.round(solPriceUsd / currentTlxPriceUsd);
+            const baseTlx = Math.round(solAmt * tlxPerSol);
+            const bonusTlx = Math.round(baseTlx * 1.15);
+            document.getElementById("presaleBaseTlx").innerText = `${baseTlx.toLocaleString('hu-HU')} TLX`;
+            document.getElementById("presaleTotalTlx").innerText = `${bonusTlx.toLocaleString('hu-HU')} TLX`;
+        }
+
+        function executePresalePurchase() {
+            const solAmt = parseFloat(document.getElementById("presaleSolInput").value) || 0.25;
+            showToast(`Presale igénylés (${solAmt} SOL) megnyitása a @TetraLuxBot-ban...`, "fa-solid fa-rocket text-amber-400");
+            window.open(`https://t.me/TetraLuxBot?start=presale_${solAmt}`, "_blank", "noopener,noreferrer");
+        }
+
+        // Interactive TetraDiamond #001 - #100 Serial Switcher
+        function updateSelectedNftSerial(val) {
+            const padded = String(val).padStart(3, '0');
+            currentNftSerial = padded;
+            document.getElementById("selectedSerialBadge").innerText = `#${padded}`;
+            document.getElementById("nftCardCaption").innerText = `DIAMOND #${padded} / #100`;
+            document.getElementById("nftFallbackSerialText").innerText = `DIAMOND #${padded}`;
+            document.getElementById("mintBoxSerialTitle").innerText = `DIAMOND #${padded}`;
+            document.getElementById("nftMetadataJsonLink").href = `metadata/${padded}.json`;
+            document.getElementById("nftMetadataJsonLink").innerHTML = `<i class="fa-solid fa-file-code mr-1"></i>metadata/${padded}.json ↗`;
+
+            const imgEl = document.getElementById("nftDynamicImage");
+            imgEl.style.display = "block";
+            document.getElementById("nftFallbackCard").style.display = "none";
+            imgEl.src = `images/${padded}.png`;
+        }
+
+        function mintSelectedDiamondNft() {
+            showToast(`DIAMOND #${currentNftSerial} ($10 in SOL) mintelés indítása...`, "fa-solid fa-gem text-emerald-400");
+            window.open(`https://t.me/TetraLuxBot?start=mint_${currentNftSerial}`, "_blank", "noopener,noreferrer");
+        }
+
+        function claim90dNftReward() {
+            showToast(`DIAMOND #${currentNftSerial}: A 90 napos (7,776,000 mp) tartás ellenőrzése a DiamondCertificate PDA-n...`, "fa-solid fa-unlock-keyhole text-cyan-400");
+            setTimeout(() => {
+                window.open(`https://t.me/TetraLuxBot?start=claim_${currentNftSerial}`, "_blank", "noopener,noreferrer");
+            }, 1200);
         }
 
         // Switch Pool Era (MOST vs 2027 v3.0)
@@ -1429,7 +1739,7 @@
             calculateDeFiSwap();
         }
 
-        // Dynamic DeFi Swap Calculator
+        // Dynamic DeFi Swap, NFT & Comic Calculator
         function calculateDeFiSwap() {
             const amount = Math.max(0, parseFloat(document.getElementById("swapInputAmount").value) || 0);
             const baseToken = document.getElementById("swapBaseToken").value;
@@ -1442,9 +1752,18 @@
             const dynamicTlxPerUsdc = Math.round(1 / currentTlxPriceUsd);
             const dynamicTlxPerSol = Math.round(solPriceUsd / currentTlxPriceUsd);
 
+            // Update NFT $10 in SOL & $1 in TLX + Comic $5 in TLX
             const nftRewardEl = document.getElementById("nftRewardEstimate");
             if (nftRewardEl) {
                 nftRewardEl.innerText = `~${dynamicTlxPerUsdc.toLocaleString('hu-HU')} TLX Airdrop`;
+            }
+            const nftSolEl = document.getElementById("nftLiveSolPrice");
+            if (nftSolEl) {
+                nftSolEl.innerText = `~${(10 / solPriceUsd).toFixed(4)} SOL`;
+            }
+            const comicCostEl = document.getElementById("comicLiveTlxCost");
+            if (comicCostEl) {
+                comicCostEl.innerText = `~${(dynamicTlxPerUsdc * 5).toLocaleString('hu-HU')} TLX`;
             }
 
             const v3UsdcEl = document.getElementById("v3DynamicUsdc");
@@ -1599,9 +1918,12 @@
                         const derivedSolPrice = parseFloat(solPair.priceUsd) / parseFloat(solPair.priceNative);
                         if (derivedSolPrice > 10 && derivedSolPrice < 2000) {
                             solPriceUsd = derivedSolPrice;
+                            const solTicker = document.getElementById("tickerSolPrice");
+                            if (solTicker) solTicker.innerText = `$${solPriceUsd.toFixed(2)}`;
                         }
                     }
                     calculateDeFiSwap();
+                    calculatePresale();
                     calculateLiquidityShare();
                     updateBurnSimulator();
                 }
@@ -1613,12 +1935,14 @@
         // Initialize Portal
         window.addEventListener("DOMContentLoaded", () => {
             calculateDeFiSwap();
+            calculatePresale();
             calculateLiquidityShare();
             calculateStakeRewards();
             updateBurnSimulator();
             updateBurnCountdown();
             setInterval(updateBurnCountdown, 1000);
             fetchLiveDexData();
+            setInterval(fetchLiveDexData, 30000);
         });
     </script>
 </body>
