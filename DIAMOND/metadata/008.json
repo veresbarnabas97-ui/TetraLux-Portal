@@ -1,0 +1,69 @@
+{
+  "name": "TetraDiamond #008",
+  "symbol": "TDMD",
+  "description": "TetraDiamond #008 — Hivatalos limitált (100 db) Solana Web3 NFT a 2027 TetraLux (TLX v3.0) ökoszisztémában. Fix belépési ár: $10 USD értékű SOL. 90 nap (7,776,000 mp) listázásmentes tartás után garantált +10% ($1.00 USD értékű TLX token) hozam a DiamondCertificate PDA okosszerződésből.",
+  "seller_fee_basis_points": 500,
+  "image": "https://veresbarnabas97-ui.github.io/TetraLux-Portal/images/008.png",
+  "external_url": "https://veresbarnabas97-ui.github.io/TetraLux-Portal/#nft",
+  "attributes": [
+    {
+      "trait_type": "Serial Number",
+      "value": "#008"
+    },
+    {
+      "trait_type": "EditionNumber",
+      "value": 8
+    },
+    {
+      "trait_type": "Max Supply",
+      "value": "100"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Founder Top 10 (#002-#010)"
+    },
+    {
+      "trait_type": "Rarity",
+      "value": "Legendary"
+    },
+    {
+      "trait_type": "Mint Price",
+      "value": "$10 in SOL"
+    },
+    {
+      "trait_type": "Holding Period",
+      "value": "90 Days (7,776,000s)"
+    },
+    {
+      "trait_type": "Guaranteed Yield",
+      "value": "+10% ($1.00 in TLX)"
+    },
+    {
+      "trait_type": "Reward Token CA",
+      "value": "5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3"
+    },
+    {
+      "trait_type": "Ecosystem Version",
+      "value": "2027 TetraLux v3.0"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "https://veresbarnabas97-ui.github.io/TetraLux-Portal/images/008.png",
+        "type": "image/png"
+      },
+      {
+        "uri": "https://veresbarnabas97-ui.github.io/TetraDiamondNFT/images/008.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "image",
+    "creators": [
+      {
+        "address": "4iubzdpP14Mo32iRseD7nZEhP1RVLWjjwbsh228uBk3z",
+        "share": 100
+      }
+    ]
+  }
+}
