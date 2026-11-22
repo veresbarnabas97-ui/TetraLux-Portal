@@ -1,0 +1,57 @@
+{
+  "version": "2027.3.0-OFFICIAL",
+  "updated_at": "2026-11-22",
+  "token": {
+    "name": "TetraLux",
+    "symbol": "TLX",
+    "ca": "5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3",
+    "treasury_wallet": "4iubzdpP14Mo32iRseD7nZEhP1RVLWjjwbsh228uBk3z",
+    "solscan": "https://solscan.io/token/5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3",
+    "raydium_sol": "https://raydium.io/swap/?inputMint=sol&outputMint=5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3",
+    "raydium_usdc": "https://raydium.io/swap/?inputMint=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&outputMint=5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3",
+    "add_liquidity": "https://raydium.io/liquidity-pools/?token=5vxfqnLVETP6xqZAjebckEbRCkwyzHFoDUoBjXhxEqA3"
+  },
+  "locks": [
+    {
+      "id": "lock_1",
+      "name": "Lock #1 (USDC-TLX LP)",
+      "amount": "112.29 TLX-USDC LP",
+      "url": "https://stakepoint.app/locks/cmw62o5iy0000l608kgfr77xs?t=1794058570"
+    },
+    {
+      "id": "lock_2",
+      "name": "Lock #2 (TLX-WSOL LP)",
+      "amount": "750 TLX-WSOL LP",
+      "url": "https://stakepoint.app/locks/cmw6g1zur0000lf08y2zt7tdr"
+    },
+    {
+      "id": "lock_3",
+      "name": "Lock #3 (Token Reserve)",
+      "amount": "2,000,000 TLX",
+      "url": "https://stakepoint.app/locks/cmw6gvtej0000jx08bpj4h9pw"
+    }
+  ],
+  "nft": {
+    "collection_name": "TetraDiamond NFT",
+    "max_supply": 100,
+    "mint_price_usd": 10.0,
+    "hold_days": 90,
+    "reward_bonus_pct": 10,
+    "collection_mint": "READY_FOR_CANDY_MACHINE_MINT"
+  },
+  "comics": {
+    "status": "in_production",
+    "progress_percent": 75,
+    "price_usd": 5.0,
+    "chapters": 4,
+    "note_hu": "A 4 részes képregény illusztrációi és szövegezése aktív gyártás alatt áll (75%). Hamarosan elérhető $5 értékű TLX-ért!",
+    "note_en": "Artwork and lettering for the 4-part comic series are actively in production (75%). Launching soon for $5 in TLX!"
+  },
+  "socials": {
+    "portal": "https://veresbarnabas97-ui.github.io/TetraLux-Portal/",
+    "telegram_channel": "https://t.me/TetraLux00",
+    "telegram_group": "https://t.me/+iWnFqlxTK6Y5ZTQ8",
+    "telegram_bot": "https://t.me/TetraLuxBot",
+    "twitter": "https://x.com/TetraL4212"
+  }
+}
