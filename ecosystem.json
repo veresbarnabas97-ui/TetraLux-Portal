@@ -33,13 +33,13 @@
   ],
   "nft": {
     "collection_name": "TetraDiamond NFT",
-    "status": "live_portal_bot_mint",
     "max_supply": 100,
     "mint_price_usd": 10.0,
     "hold_days": 90,
     "reward_bonus_pct": 10,
-    "devnet_anchor_program_id": "8t4FXwfejW9wypeyUEtTYwq6dqCnk5oEVNcss9cWrtAB",
-    "mainnet_vault_unlock_milestone_nfts": 22
+    "vault_program_id": "6CzLXUnYwZ235qVbuuLCSfpMgQSmgsHNbFdvd1dUTqc6",
+    "collection_mint": "4d7R6FU4E7rrjU8Yfj24ffTNAEBgEVBBCNCdB3BihEKw",
+    "solscan_collection": "https://solscan.io/account/4d7R6FU4E7rrjU8Yfj24ffTNAEBgEVBBCNCdB3BihEKw"
   },
   "comics": {
     "status": "in_production",
