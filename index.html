@@ -705,7 +705,7 @@
                     <!-- NFT Interactive Visual Card (#001 - #100 Dynamic Switcher) -->
                     <div class="lg:col-span-5 flex flex-col items-center">
                         <div class="w-72 sm:w-80 rounded-3xl p-5 bg-gradient-to-br from-[#042f2e] via-[#021716] to-slate-950 border border-emerald-400/40 shadow-2xl text-center space-y-4">
-                            <img id="nftDynamicImage" src="images/001.png" alt="TetraDiamond #001" onerror="this.onerror=null; this.src='diamond001.png'; this.onerror=function(){this.style.display='none'; document.getElementById('nftFallbackCard').style.display='flex';};" class="w-full rounded-2xl object-cover border border-emerald-500/20">
+                            <img id="nftDynamicImage" src="DIAMOND/images/001.png" alt="TetraDiamond #001" onerror="this.onerror=null; this.src='diamond001.png'; this.onerror=function(){this.style.display='none'; document.getElementById('nftFallbackCard').style.display='flex';};" class="w-full rounded-2xl object-cover border border-emerald-500/20">
                             <div id="nftFallbackCard" style="display:none;" class="w-full aspect-[4/5] rounded-2xl bg-gradient-to-br from-[#063f32] via-[#03201b] to-[#010908] border border-emerald-400/40 flex-col items-center justify-center p-8">
                                 <i class="fa-regular fa-gem text-7xl text-[#2dd4bf] mb-8 drop-shadow-[0_0_20px_rgba(45,212,191,0.45)]"></i>
                                 <span id="nftFallbackSerialText" class="font-mono-code tracking-[0.25em] text-[#5eead4] text-sm font-semibold">DIAMOND #001</span>
@@ -768,7 +768,7 @@
                                     <div class="text-xs font-extrabold uppercase tracking-wider text-emerald-400"><span data-i18n="nft_chosen">Kiválasztott Kártya:</span> <span id="mintBoxSerialTitle" class="text-white font-mono-code">DIAMOND #001</span></div>
                                     <div class="text-[11px] text-slate-400" data-i18n="nft_sync">Szinkronizálva a @TetraLuxBot on-chain ellenőrzőjével</div>
                                 </div>
-                                <a id="nftMetadataJsonLink" href="metadata/001.json" target="_blank" class="text-xs font-mono-code text-cyan-400 hover:underline shrink-0">
+                                <a id="nftMetadataJsonLink" href="DIAMOND/metadata/001.json" target="_blank" class="text-xs font-mono-code text-cyan-400 hover:underline shrink-0">
                                     <i class="fa-solid fa-file-code mr-1"></i>metadata/001.json ↗
                                 </a>
                             </div>
@@ -1284,13 +1284,13 @@
             document.getElementById("nftCardCaption").innerText = `DIAMOND #${padded} / #100`;
             document.getElementById("nftFallbackSerialText").innerText = `DIAMOND #${padded}`;
             document.getElementById("mintBoxSerialTitle").innerText = `DIAMOND #${padded}`;
-            document.getElementById("nftMetadataJsonLink").href = `metadata/${padded}.json`;
+            document.getElementById("nftMetadataJsonLink").href = `DIAMOND/metadata/${padded}.json`;
             document.getElementById("nftMetadataJsonLink").innerHTML = `<i class="fa-solid fa-file-code mr-1"></i>metadata/${padded}.json ↗`;
 
             const imgEl = document.getElementById("nftDynamicImage");
             imgEl.style.display = "block";
             document.getElementById("nftFallbackCard").style.display = "none";
-            imgEl.src = `images/${padded}.png`;
+            imgEl.src = `DIAMOND/images/${padded}.png`;
         }
 
         function mintSelectedDiamondNft() {
