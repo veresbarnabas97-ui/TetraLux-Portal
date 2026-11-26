@@ -1144,6 +1144,8 @@
                     const pct = data.comics.progress_percent;
                     document.getElementById("comicProgressBar").style.width = pct + "%";
                     document.getElementById("comicProgressText").innerText = pct + "%";
+                    I18N.hu.com_badge = `Készítés Folyamatban (${pct}%) • Exkluzív TLX Utility`;
+                    I18N.en.com_badge = `In Production (${pct}%) • Exclusive TLX Utility`;
                 }
                 applyPortalLanguage(currentPortalLang);
             } catch (_) {}
