@@ -1,6 +1,6 @@
 {
-  "version": "2027.3.0-OFFICIAL",
-  "updated_at": "2026-11-22",
+  "version": "2027.3.0-LIVE",
+  "updated_at": "2026-11-26",
   "token": {
     "name": "TetraLux",
     "symbol": "TLX",
@@ -33,11 +33,13 @@
   ],
   "nft": {
     "collection_name": "TetraDiamond NFT",
+    "status": "live_portal_bot_mint",
     "max_supply": 100,
     "mint_price_usd": 10.0,
     "hold_days": 90,
     "reward_bonus_pct": 10,
-    "collection_mint": "READY_FOR_CANDY_MACHINE_MINT"
+    "devnet_anchor_program_id": "8t4FXwfejW9wypeyUEtTYwq6dqCnk5oEVNcss9cWrtAB",
+    "mainnet_vault_unlock_milestone_nfts": 22
   },
   "comics": {
     "status": "in_production",
