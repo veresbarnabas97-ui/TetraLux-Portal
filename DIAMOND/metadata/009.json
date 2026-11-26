@@ -3,7 +3,7 @@
   "symbol": "TDMD",
   "description": "TetraDiamond #009 — Hivatalos limitált (100 db) Solana Web3 NFT a 2027 TetraLux (TLX v3.0) ökoszisztémában. Fix belépési ár: $10 USD értékű SOL. 90 nap (7,776,000 mp) listázásmentes tartás után garantált +10% ($1.00 USD értékű TLX token) hozam a DiamondCertificate PDA okosszerződésből.",
   "seller_fee_basis_points": 500,
-  "image": "https://veresbarnabas97-ui.github.io/TetraLux-Portal/images/009.png",
+  "image": "https://veresbarnabas97-ui.github.io/TetraLux-Portal/DIAMOND/images/009.png",
   "external_url": "https://veresbarnabas97-ui.github.io/TetraLux-Portal/#nft",
   "attributes": [
     {
@@ -50,11 +50,11 @@
   "properties": {
     "files": [
       {
-        "uri": "https://veresbarnabas97-ui.github.io/TetraLux-Portal/images/009.png",
+        "uri": "https://veresbarnabas97-ui.github.io/TetraLux-Portal/DIAMOND/images/009.png",
         "type": "image/png"
       },
       {
-        "uri": "https://veresbarnabas97-ui.github.io/TetraDiamondNFT/images/009.png",
+        "uri": "https://veresbarnabas97-ui.github.io/TetraLux-Portal/DIAMOND/images/009.png",
         "type": "image/png"
       }
     ],
